@@ -1,10 +1,9 @@
 import SearchNavBar from "../../components/SearchNavBar"
 import styles from "./Search.module.scss"
+import Map from "../../components/Map";
+import {useState} from "react"
 import {
   useLoadScript,
-  GoogleMap,
-  Marker,
- MarkerClusterer
 } from "@react-google-maps/api";
 
 function SearchPage (props) {
@@ -18,7 +17,7 @@ function SearchPage (props) {
 
   return (
   <div className={styles["main"]}>
-    <div>
+    <div className={styles["nav-bar"]}>
        <SearchNavBar/>
     </div>
     <div className={styles["map"]}>
@@ -26,27 +25,9 @@ function SearchPage (props) {
     </div>
   </div>
   )
-
 }
 
-function Map (props) {
-  const {bikesData} = props
-  const center = {lat:25.04792,lng:121.51741}
-
-  return (
-     <GoogleMap 
-     zoom={16} 
-     center={center } 
-     mapContainerClassName={styles["map-container"]}>
-      <MarkerClusterer>
-        {(clusterer) => bikesData.map( item=> <Marker key={item.sno}position={{lat:item.lat,lng:item.lng}} clusterer={clusterer}/>) }
-      </MarkerClusterer>
-      <Marker position={center}/>
-  </GoogleMap>
-  )
- 
-}
-// sever SSG fetch data
+// server SSG fetch data
 export async function getStaticProps () {
   const allBikesData=  await fetch('https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json')
   .then(function(response) {
@@ -58,7 +39,8 @@ export async function getStaticProps () {
   return {
     props: {
       allBikesData: allBikesData
-    }
+    },
+    revalidate: 60
   } 
 }
 
