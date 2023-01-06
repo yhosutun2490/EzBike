@@ -3,7 +3,8 @@ import styles from "./Search.module.scss"
 import {
   useLoadScript,
   GoogleMap,
-  Marker
+  Marker,
+ MarkerClusterer
 } from "@react-google-maps/api";
 
 function SearchPage (props) {
@@ -37,8 +38,10 @@ function Map (props) {
      zoom={16} 
      center={center } 
      mapContainerClassName={styles["map-container"]}>
+      <MarkerClusterer>
+        {(clusterer) => bikesData.map( item=> <Marker key={item.sno}position={{lat:item.lat,lng:item.lng}} clusterer={clusterer}/>) }
+      </MarkerClusterer>
       <Marker position={center}/>
-      {bikesData.map( item=> <Marker key={item.sno}position={{lat:item.lat,lng:item.lng}}/>)}
   </GoogleMap>
   )
  
