@@ -1,0 +1,35 @@
+.info-window-main {
+  font-size: 1.2rem;
+}
+.bike-main-info, .bike-sub-info {
+ width: 85%;
+ margin: 0 auto;
+ display: flex;
+}
+.bike-sub-info {
+  flex-direction: column;
+}
+.info-title {
+  font-weight: 700;
+  margin-right: 10px;
+  color: rgb(46, 53, 52);
+}
+.info-content {
+  font-weight: 400;
+  color: darken(grey, 30%);
+}
+
+.rent-count,.park-count {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(72, 71, 71);
+  &:first-child {
+    margin-right: 2%;
+  }
+}
+.alert {
+  color: red;
+  font-weight: 700;
+}
