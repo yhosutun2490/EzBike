@@ -1,6 +1,7 @@
 import styles from "./InfoMarker.module.scss";
 import { GiDutchBike } from "react-icons/gi";
 import { FaParking } from "react-icons/fa";
+import AddFavoriteBtn from "../AddFavoriteBtn";
 
 function InfoMarker(props) {
   const { ar, aren, sbi, bemp, updateTime } = props;
@@ -18,6 +19,9 @@ function InfoMarker(props) {
           <FaParking size={28} />
           <div className={styles[`${parkCountStyle}`]}>可停: {bemp}</div>
         </span>
+        <div className={styles["add-btn"]}>
+          <AddFavoriteBtn />
+        </div>
       </div>
       <div className={styles["bike-sub-info"]}>
         <div className={styles["bike-name"]}>

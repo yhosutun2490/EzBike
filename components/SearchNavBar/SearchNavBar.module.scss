@@ -9,8 +9,13 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+.input {
+  flex-grow: 1; //剩下空間都分配給input
+  padding: 0 2%;
+}
 
 .icon_love_list {
   margin-left: auto;
   margin-right: 5%;
+ 
 }

@@ -1,5 +1,5 @@
 .info-window-main {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 .bike-main-info, .bike-sub-info {
  width: 85%;
@@ -22,12 +22,15 @@
 .rent-count,.park-count {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 500;
   color: rgb(72, 71, 71);
   &:first-child {
     margin-right: 2%;
   }
+}
+.add-btn {
+  margin-left: 2%;
 }
 .alert {
   color: red;

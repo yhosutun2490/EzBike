@@ -11,6 +11,9 @@ function SearchNavBar(props) {
         <div className={`${styles.icon} ${styles.icon_hamburger}`}>
           <FaBars size={32} />
         </div>
+        <div className={styles.input}>
+          <PlacesAutoComplete setSelected={setSelected} />
+        </div>
         <div className={`${styles.icon} ${styles.icon_love_list}`}>
           <CgUserList size={32} />
         </div>
@@ -18,7 +21,6 @@ function SearchNavBar(props) {
           <BsGear size={32} />
         </div>
       </nav>
-      <PlacesAutoComplete setSelected={setSelected} />
     </header>
   );
 }
