@@ -1,14 +1,16 @@
 .header {
   width: 100%;
-  height: 80px;
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 .nav {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
-.icon {
-  width: 30px;
-  height: 30px;
+
+.icon_love_list {
+  margin-left: auto;
+  margin-right: 5%;
 }

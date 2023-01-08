@@ -1,19 +1,24 @@
-import InputSearch from "./InputSearch";
+import PlacesAutoComplete from "../PlacesAutocomplete";
 import styles from "./SearchNavBar.module.scss";
-import BarThreeIcon from "../../public/images/bar-three-icon";
-import GearIcon from "../../public/images/gear-icon";
-function SearchNavBar() {
+import { FaBars } from "react-icons/fa";
+import { BsGear } from "react-icons/bs";
+import { CgUserList } from "react-icons/cg";
+function SearchNavBar(props) {
+  const { setSelected } = props;
   return (
     <header className={styles["header"]}>
       <nav className={styles["nav"]}>
-        <div className={styles["icon"]}>
-          <BarThreeIcon />
+        <div className={`${styles.icon} ${styles.icon_hamburger}`}>
+          <FaBars size={32} />
         </div>
-        <div className={styles["icon"]}>
-          <GearIcon />
+        <div className={`${styles.icon} ${styles.icon_love_list}`}>
+          <CgUserList size={32} />
+        </div>
+        <div className={`${styles.icon} ${styles.icon_setting}`}>
+          <BsGear size={32} />
         </div>
       </nav>
-      <InputSearch />
+      <PlacesAutoComplete setSelected={setSelected} />
     </header>
   );
 }
