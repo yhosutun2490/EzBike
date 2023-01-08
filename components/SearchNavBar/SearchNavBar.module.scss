@@ -13,9 +13,29 @@
   flex-grow: 1; //剩下空間都分配給input
   padding: 0 2%;
 }
+.icon {
+  cursor: pointer;
+}
 
 .icon_love_list {
   margin-left: auto;
   margin-right: 5%;
- 
+}
+
+.introduction {
+  display: flex;
+  justify-content: space-between;
+  & .intro_content {
+    display: flex;
+    align-items: center;
+    & .intro_note {
+      margin-left: 5px;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
+}
+.image {
+  width: 32px;
+  height: 32px;
 }

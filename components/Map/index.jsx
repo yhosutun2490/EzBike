@@ -4,8 +4,8 @@ import InfoMarker from "./InfoMarker";
 import { GoogleMap, Marker, MarkerClusterer } from "@react-google-maps/api";
 
 function Map(props) {
-  const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
-  const { bikesData, position, setSelected } = props;
+  const { bikesData, position, activeMarker, setActiveMarker, isModalOpen } =
+    props;
   const center = { lat: 25.04792, lng: 121.51741 }; // 預設中心點
   const handleActiveMarker = (markerId) => {
     if (markerId === activeMarker) {
@@ -52,7 +52,7 @@ function Map(props) {
                 handleActiveMarker(item.sno);
               }}
             >
-              {activeMarker === item.sno ? (
+              {activeMarker === item.sno && !isModalOpen ? (
                 <div className={styles["info-window"]}>
                   <InfoMarker
                     ar={item.ar}
