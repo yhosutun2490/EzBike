@@ -3,11 +3,13 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-}
+  
 .nav {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  position: relative; // 最愛站點視窗定位用
+  }
 }
 .input {
   flex-grow: 1; //剩下空間都分配給input
@@ -35,7 +37,7 @@
     }
   }
 }
-.image {
+.icon {
   width: 32px;
   height: 32px;
 }

@@ -7,16 +7,13 @@ function AddFavoriteBtn(props) {
   const setFavoriteStop = useContext(BikesContext).setUserFavoriteStops;
   const userFavoriteStops = useContext(BikesContext).userFavoriteStops;
   const newFavoriteIdAarr = Array.from(userFavoriteStops);
-  console.log(userFavoriteStops);
-
   const isStopLiked = checkStopIsLiked();
-  console.log(isStopLiked);
 
   // 比對是否已經存在最愛清單裡
   function checkStopIsLiked() {
     let checkIsLiked = false;
     if (userFavoriteStops.length !== 0) {
-      const results = userFavoriteStops?.find((id) => id === Number(stopsId));
+      const results = userFavoriteStops?.find((id) => id === stopsId);
       if (results) {
         checkIsLiked = true;
       } else {
@@ -28,7 +25,7 @@ function AddFavoriteBtn(props) {
   }
 
   function handleAddFavorite(e) {
-    const stopId = Number(e.target.dataset.id); //單車站id號碼
+    const stopId = e.target.dataset.id; //單車站id號碼
     newFavoriteIdAarr.push(stopId);
     setFavoriteStop(newFavoriteIdAarr);
     alert("已加入最愛");
@@ -36,7 +33,7 @@ function AddFavoriteBtn(props) {
 
   function handleDeleteFavorite(e) {
     const stopId = Number(e.target.dataset.id); //單車站id號碼
-    const resultArr = newFavoriteIdAarr.filter((id) => id !== Number(stopId));
+    const resultArr = newFavoriteIdAarr.filter((id) => id !== stopId);
     setFavoriteStop(resultArr);
     alert("已取消最愛");
   }

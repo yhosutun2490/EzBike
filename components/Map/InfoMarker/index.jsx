@@ -20,7 +20,7 @@ function InfoMarker(props) {
           <div className={styles[`${parkCountStyle}`]}>可停: {bemp}</div>
         </span>
         <div className={styles["add-btn"]}>
-          <AddFavoriteBtn stopId={id} />
+          <AddFavoriteBtn stopsId={id} />
         </div>
       </div>
       <div className={styles["bike-sub-info"]}>

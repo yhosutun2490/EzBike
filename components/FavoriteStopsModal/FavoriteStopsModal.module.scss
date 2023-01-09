@@ -1,0 +1,38 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  /* 覆蓋上去，不然下面畫面後透出 */
+  z-index: 5;
+}
+.main_modal {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 6;
+  background-color: white;
+}
+
+.page_cluster {
+  background-color: white;
+  & .stop_card {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    border-bottom: 1px solid rgb(238, 232, 232);
+    font-size: 1.2rem;
+    color: #267b98;
+    font-weight: 700;
+  }
+}
+.stop_name {
+  display: flex;
+}
+.bikes_info,.rent_count,.park_count {
+  display: flex;
+}

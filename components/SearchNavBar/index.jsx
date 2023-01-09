@@ -4,8 +4,17 @@ import { FaBars } from "react-icons/fa";
 import { BsGear } from "react-icons/bs";
 import { CgUserList } from "react-icons/cg";
 import HamburgerModal from "../HamburgerModal";
+import FavoriteStopsModal from "../FavoriteStopsModal";
+
 function SearchNavBar(props) {
-  const { setSelected, isModalOpen, setIsModalOpen } = props;
+  const {
+    setSelected,
+    isModalOpen,
+    setIsModalOpen,
+    isFavoriteOpen,
+    setIsFavoriteOpen,
+    bikeStops,
+  } = props;
 
   return (
     <header className={styles["header"]}>
@@ -20,8 +29,17 @@ function SearchNavBar(props) {
         <div className={styles.input}>
           <PlacesAutoComplete setSelected={setSelected} />
         </div>
-        <div className={`${styles.icon} ${styles.icon_love_list}`}>
+        <div
+          className={`${styles.icon} ${styles.icon_love_list}`}
+          onClick={() => setIsFavoriteOpen(!isFavoriteOpen)}
+        >
           <CgUserList size={32} />
+          {isFavoriteOpen && (
+            <FavoriteStopsModal
+              setIsFavoriteOpen={setIsFavoriteOpen}
+              bikeStops={bikeStops}
+            />
+          )}
         </div>
         <div className={`${styles.icon} ${styles.icon_setting}`}>
           <BsGear size={32} />
@@ -32,23 +50,23 @@ function SearchNavBar(props) {
           <img
             src="https://icon-library.com/images/cycling-icon-png/cycling-icon-png-15.jpg"
             alt="normal-bike"
-            className={styles.image}
+            className={styles.icon}
           />
           <p className={styles.intro_note}>正常租借</p>
         </div>
         <div className={`${styles.intro_content} ${styles.rent}`}>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Symbole_AMP_V%C3%A9lo.svg"
-            alt="normal-bike"
-            className={styles.image}
+            alt="lack-renting"
+            className={styles.icon}
           />
           <p className={styles.intro_note}>租借數量不足</p>
         </div>
         <div className={`${styles.intro_content} ${styles.park}`}>
           <img
             src="https://cdn-icons-png.flaticon.com/512/9050/9050693.png"
-            alt="normal-bike"
-            className={styles.image}
+            alt="lack-parking"
+            className={styles.icon}
           />
           <p className={styles.intro_note}>停車位不足</p>
         </div>
