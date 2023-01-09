@@ -1,0 +1,16 @@
+.info-window {
+  font-size: 1.2rem;
+  .stop-name,
+  .stop-detail,
+  .stop-address,
+  .updated-time {
+    display: flex;
+    align-items: center;
+  }
+
+  .rent-count,
+  .park-count {
+    display: flex;
+    align-items: center;
+  }
+}

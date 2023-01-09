@@ -1,6 +1,7 @@
 import styles from "./Map.module.scss";
 import { useState } from "react";
-import InfoMarker from "./InfoMarker"; // 手機版站點地圖使用
+import InfoMarker from "./InfoMarker"; // 手機版站點資訊使用
+import InfoWindowDesk from "./InfoWindowDesk"; // 桌機版站點資訊使用
 import {
   GoogleMap,
   Marker,
@@ -60,6 +61,7 @@ function Map(props) {
               {activeMarker === item.sno && !isModalOpen ? (
                 <div className={styles["info-window-mobile"]}>
                   <InfoMarker
+                    id={item.sno}
                     ar={item.ar}
                     aren={item.aren}
                     sbi={item.sbi}
@@ -69,14 +71,18 @@ function Map(props) {
                 </div>
               ) : null}
               {activeMarker === item.sno && !isModalOpen ? (
-                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                  <div className={styles["info-window-desk"]}>
-                    <div>{item.ar}</div>
-                    <div>{item.aren}</div>
-                    <div>{item.sbi}</div>
-                    <div>{item.bemp}</div>
-                    <div>{item.updateTime}</div>
-                  </div>
+                <InfoWindow
+                  onCloseClick={() => setActiveMarker(null)}
+                  className={styles["info-window-desk"]}
+                >
+                  <InfoWindowDesk
+                    id={item.sno}
+                    ar={item.ar}
+                    aren={item.aren}
+                    sbi={item.sbi}
+                    bemp={item.bemp}
+                    updateTime={item.updateTime}
+                  />
                 </InfoWindow>
               ) : null}
             </Marker>

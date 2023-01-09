@@ -4,7 +4,7 @@ import { FaParking } from "react-icons/fa";
 import AddFavoriteBtn from "../AddFavoriteBtn";
 
 function InfoMarker(props) {
-  const { ar, aren, sbi, bemp, updateTime } = props;
+  const { id, ar, aren, sbi, bemp, updateTime } = props;
   // 界車禍停車數量小於5時，變換警示顏色
   const rentCountStyle = Number(sbi) <= 3 ? "alert" : "";
   const parkCountStyle = Number(bemp) <= 3 ? "alert" : "";
@@ -20,7 +20,7 @@ function InfoMarker(props) {
           <div className={styles[`${parkCountStyle}`]}>可停: {bemp}</div>
         </span>
         <div className={styles["add-btn"]}>
-          <AddFavoriteBtn />
+          <AddFavoriteBtn stopId={id} />
         </div>
       </div>
       <div className={styles["bike-sub-info"]}>
