@@ -1,10 +1,9 @@
 import PlacesAutoComplete from "../PlacesAutocomplete";
 import styles from "./SearchNavBar.module.scss";
 import { FaBars } from "react-icons/fa";
-import { GrUpdate } from "react-icons/gr";
+import { BsGear } from "react-icons/bs";
 import { CgUserList } from "react-icons/cg";
 import HamburgerModal from "../HamburgerModal";
-import { useState } from "react";
 function SearchNavBar(props) {
   const { setSelected, isModalOpen, setIsModalOpen } = props;
 
@@ -25,7 +24,7 @@ function SearchNavBar(props) {
           <CgUserList size={32} />
         </div>
         <div className={`${styles.icon} ${styles.icon_setting}`}>
-          <GrUpdate size={32} />
+          <BsGear size={32} />
         </div>
       </nav>
       <div className={styles.introduction}>

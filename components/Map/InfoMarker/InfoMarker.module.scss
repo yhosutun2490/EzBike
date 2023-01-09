@@ -1,6 +1,25 @@
 .info-window-main {
+  width: 100%;
+  background-color: rgb(169, 214, 190);
   font-size: 1.0rem;
   z-index: 1;
+  transform-origin: bottom;
+  animation: move-in 0.3s ease-in 1 forwards
+}
+@keyframes move-in {
+  0% {
+      transform: scaleY(0);
+      opacity: 0;
+    }
+  
+    70% {
+      opacity: 0;
+    }
+  
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    } 
 }
 .bike-main-info, .bike-sub-info {
  width: 85%;

@@ -3,18 +3,21 @@
   height: 100%;
   position: relative;
 }
-.info-window {
+.info-window-mobile {
   position: absolute;
   width: 100%;
   bottom: 0;
   left: 0 ;
-  background-color: aliceblue;
   z-index: 5;
+  @media screen and (min-width: 700px) {
+      display: none;
+    }
 }
 
-.info-window-main {
-  font-size: 1.2rem;
-
+.info-window-desk {
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 }
 .info-title {
   font-weight: 700;

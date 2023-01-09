@@ -11,8 +11,37 @@
   left: 0;
   z-index: 6;
   padding: 1%;
+  transform-origin: left;
+  animation: move-in 0.5s 1 ease-out 0s forwards;
+  box-shadow: 0 2px 4px 4px rgba(0, 0, 0, 0.5);
+  @media screen and (min-width: 700px) {
+    width: 20%;
+  }
 }
 
+@keyframes move-in {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+    }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  } 
+}
+@keyframes text-show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}
 .backdrop {
   position: fixed;
   top: 0;
@@ -40,10 +69,12 @@
 .page_cluster {
   width: 100%;
   & .link_card {
-    height: 50px;
-    line-height: 50px;
+    height: 70px;
+    line-height: 70px;
     border-bottom: 1px solid rgb(238, 232, 232);
-    font-size: 1rem;
+    font-size: 1.5rem;
+    color: #267b98;
+    font-weight: 700;
   }
 }
 

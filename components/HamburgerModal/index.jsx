@@ -34,6 +34,9 @@ function HamburgerModal(props) {
             <Link href="/">搜尋頁</Link>
           </div>
           <div className={styles.link_card}>
+            <Link href="/">導航頁</Link>
+          </div>
+          <div className={styles.link_card}>
             <Link href="/">使用說明</Link>
           </div>
           <div className={styles.link_card}>
