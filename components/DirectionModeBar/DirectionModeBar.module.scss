@@ -1,0 +1,18 @@
+.travel_mode {
+  width: calc(100% - 20px);
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.previous {
+  margin-right: 10%;
+}
+
+.travel_mode {
+  min-width: 40%;
+  display: flex;
+  justify-content: space-between;
+}

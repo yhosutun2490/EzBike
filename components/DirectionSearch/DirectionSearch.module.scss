@@ -1,0 +1,21 @@
+.direction_search {
+  width: 100%;
+  min-width: 250px;
+  padding: 10px;
+}
+.address_dep, .address_dest {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.dot_line {
+  width: 13px;
+  height: 40px;
+  border-color: blueviolet;
+  border-right-style: dotted;
+}

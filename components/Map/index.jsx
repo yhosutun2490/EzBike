@@ -1,5 +1,4 @@
 import styles from "./Map.module.scss";
-import { useState } from "react";
 import InfoMarker from "./InfoMarker"; // 手機版站點資訊使用
 import InfoWindowDesk from "./InfoWindowDesk"; // 桌機版站點資訊使用
 import {
@@ -7,12 +6,19 @@ import {
   Marker,
   MarkerClusterer,
   InfoWindow,
+  DirectionsRenderer,
 } from "@react-google-maps/api";
 
 function Map(props) {
-  const { bikesData, position, activeMarker, setActiveMarker, isModalOpen } =
-    props;
-  const center = { lat: 25.04792, lng: 121.51741 }; // 預設中心點
+  const {
+    bikesData,
+    position,
+    activeMarker,
+    setActiveMarker,
+    isModalOpen,
+    directions,
+  } = props;
+  const center = { lat: 25.04792, lng: 121.51741 }; // 預設中心點台北車站
   const handleActiveMarker = (markerId) => {
     if (markerId === activeMarker) {
       return;
@@ -30,6 +36,18 @@ function Map(props) {
       mapContainerClassName={styles["map-container"]}
       onClick={() => setActiveMarker(false)}
     >
+      {directions && (
+        <DirectionsRenderer
+          directions={directions}
+          options={{
+            polylineOptions: {
+              zIndex: 50,
+              strokeColor: "#1976D2", // 路線顏色
+              strokeWeight: 5,
+            },
+          }}
+        />
+      )}
       <MarkerClusterer>
         {(clusterer) =>
           bikesData.map((item) => (

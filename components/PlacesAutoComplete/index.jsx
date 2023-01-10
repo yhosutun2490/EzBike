@@ -31,7 +31,7 @@ function PlacesAutoComplete(props) {
     setSelected({ lat, lng });
   }
   return (
-    <Combobox onSelect={handleSelected}>
+    <Combobox onSelect={handleSelected} className={styles["combobox-box"]}>
       <ComboboxInput
         value={value}
         onChange={(e) => {
