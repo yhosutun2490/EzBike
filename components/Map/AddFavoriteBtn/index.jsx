@@ -32,7 +32,7 @@ function AddFavoriteBtn(props) {
   }
 
   function handleDeleteFavorite(e) {
-    const stopId = Number(e.target.dataset.id); //單車站id號碼
+    const stopId = e.target.dataset.id; //單車站id號碼
     const resultArr = newFavoriteIdAarr.filter((id) => id !== stopId);
     setFavoriteStop(resultArr);
     alert("已取消最愛");

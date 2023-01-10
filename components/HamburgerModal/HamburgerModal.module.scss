@@ -32,16 +32,7 @@
     opacity: 1;
   } 
 }
-@keyframes text-show {
-  0% {
-    opacity: 0;
-  }
 
-  100% {
-    opacity: 1;
-  }
-
-}
 .backdrop {
   position: fixed;
   top: 0;
