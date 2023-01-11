@@ -4,8 +4,8 @@ import { FaParking } from "react-icons/fa";
 import AddFavoriteBtn from "../AddFavoriteBtn";
 
 function InfoMarker(props) {
-  const { id, ar, aren, sbi, bemp, updateTime } = props;
-  // 界車禍停車數量小於5時，變換警示顏色
+  const { id, ar, aren, sbi, bemp, updateTime, lat, lng } = props;
+  // 借車或停車數量小於5時，變換警示顏色
   const rentCountStyle = Number(sbi) <= 3 ? "alert" : "";
   const parkCountStyle = Number(bemp) <= 3 ? "alert" : "";
   return (

@@ -4,7 +4,7 @@ import { FaParking } from "react-icons/fa";
 import AddFavoriteBtn from "../AddFavoriteBtn";
 
 function InfoWindowDesk(props) {
-  const { id, ar, aren, sbi, bemp, updateTime } = props;
+  const { id, ar, aren, sbi, bemp, updateTime, lat, lng } = props;
   return (
     <div className={styles["info-window"]}>
       <div className={styles["stop-name"]}>
@@ -28,7 +28,7 @@ function InfoWindowDesk(props) {
       <div className={styles["updated-time"]}>
         <p>更新時間</p>
         {updateTime}
-        <div>
+        <div className={styles["add-btn"]}>
           <AddFavoriteBtn stopsId={id} />
         </div>
       </div>

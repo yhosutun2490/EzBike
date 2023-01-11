@@ -4,15 +4,24 @@ import Map from "../../components/Map";
 import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../../context/bikesContext";
+import { GeoLocationContext } from "../../context/GeoLocationContext";
 import DirectionSearchNavBar from "../../components/DirectionSearchNavBar";
 
 const libraries = ["places"];
 
 function DirectionPage(props) {
-  const bikeStopsData = useContext(BikesContext);
-  const [selectedDep, setSelectedDep] = useState(null); // 出發地GPS
-  const [selectedDest, setSelectedDest] = useState(null); // 目的地GPS
+  const bikeStopsData = useContext(BikesContext); // 所有Ubike站點資料
+  // GPS資料
+  const userGPS = useContext(GeoLocationContext).userGPS;
+  const departureGPS = useContext(GeoLocationContext).departureGPS;
+  const destinationGPS = useContext(GeoLocationContext).destinationGPS;
+  // GPS set Function
+  const setUserGPS = useContext(GeoLocationContext).setUserGPS;
+  const setDepartureGPS = useContext(GeoLocationContext).setDepartureGPS;
+  const setDestinationGPS = useContext(GeoLocationContext).setDestinationGPS;
+
   const [directions, setDirections] = useState(null); //導航方向
+  const [travelMethod, setTravelMethod] = useState("bike");
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const setBikeStops = bikeStopsData.setAllBikesData; // 所有單車站站點資訊(context 管理)
@@ -50,32 +59,44 @@ function DirectionPage(props) {
   }, [setBikeStops]);
 
   // Google Direction函式
-  function fetchGoogleDirection() {
-    // 如果沒有出發點直接return不作事
-    if (!selectedDep) {
+  function fetchGoogleDirection(travelMethod) {
+    let travelMode = "";
+    let defaultMode = "SUBWAY";
+    // 交通方式
+    if (travelMethod === "bus") {
+      travelMode = "TRANSIT";
+      defaultMode = "BUS";
+    } else if (travelMethod === "metro") {
+      travelMode = "TRANSIT";
+    } else if (travelMethod === "bike") {
+      travelMode = "BICYCLING";
+    }
+    if (!departureGPS) {
+      // 如果沒有出發點直接return不作事
       return;
     }
-
     const service = new google.maps.DirectionsService();
     service.route(
       {
-        origin: selectedDep,
-        destination: selectedDest,
-        travelMode: "TRANSIT",
+        origin: departureGPS,
+        destination: destinationGPS,
+        travelMode: `${travelMode}`,
         // 可以選擇轉乘公車或捷運
         transitOptions: {
-          modes: ["SUBWAY"],
+          modes: [`${defaultMode}`],
           routingPreference: "FEWER_TRANSFERS",
         },
       },
       (result, status) => {
         if (status === "OK" && result) {
-          console.log(result);
           setDirections(result);
         }
       }
     );
   }
+
+  console.log(directions);
+
   return (
     <>
       <Head>
@@ -93,19 +114,21 @@ function DirectionPage(props) {
             <p>isLoading...</p>
           ) : (
             <DirectionSearchNavBar
-              setSelectedDep={setSelectedDep}
-              setSelectedDest={setSelectedDest}
+              setSelectedDep={setDepartureGPS}
+              setSelectedDest={setDestinationGPS}
+              setTravelMethod={setTravelMethod}
+              travelMethod={travelMethod}
             />
           )}
         </div>
-        {directions && <div>搭公車</div>}
+        {directions && <div></div>}
         <div className={styles["map"]}>
           {!isLoaded ? (
             <p>Loading....</p>
           ) : (
             <Map
               bikesData={bikeStops}
-              setSelected={setSelectedDep}
+              setSelected={setDepartureGPS}
               activeMarker={activeMarker}
               setActiveMarker={setActiveMarker}
               isModalOpen={isModalOpen}
@@ -115,7 +138,7 @@ function DirectionPage(props) {
         </div>
         <button
           className={styles.navigation_btn}
-          onClick={fetchGoogleDirection}
+          onClick={() => fetchGoogleDirection(travelMethod)}
         >
           導航
         </button>

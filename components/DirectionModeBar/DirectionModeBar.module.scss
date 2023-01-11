@@ -6,6 +6,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.travel_icon {
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(182, 205, 226);
+  }
+}
 
 .previous {
   margin-right: 10%;

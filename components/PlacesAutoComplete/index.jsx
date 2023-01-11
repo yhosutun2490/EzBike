@@ -1,3 +1,4 @@
+import styles from "./PlacesAutoComplete.module.scss";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -10,7 +11,6 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import styles from "./PlacesAutoComplete.module.scss";
 
 function PlacesAutoComplete(props) {
   const { setSelected } = props;
@@ -30,6 +30,7 @@ function PlacesAutoComplete(props) {
     const { lat, lng } = await getLatLng(results[0]);
     setSelected({ lat, lng });
   }
+
   return (
     <Combobox onSelect={handleSelected} className={styles["combobox-box"]}>
       <ComboboxInput

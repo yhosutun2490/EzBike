@@ -4,7 +4,8 @@ import DirectionSearch from "../DirectionSearch";
 import DirectionModeBar from "../DirectionModeBar";
 import Link from "next/link";
 function DirectionSearchNavBar(props) {
-  const { setSelectedDep, setSelectedDest } = props;
+  const { setSelectedDep, setSelectedDest, setTravelMethod, travelMethod } =
+    props;
   return (
     <div className={styles.direction_search}>
       <div className={styles.previous_arrow}>
@@ -19,7 +20,10 @@ function DirectionSearchNavBar(props) {
         />
       </div>
       <div className={styles.travel_mode}>
-        <DirectionModeBar />
+        <DirectionModeBar
+          setTravelMethod={setTravelMethod}
+          travelMethod={travelMethod}
+        />
       </div>
     </div>
   );

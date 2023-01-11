@@ -1,11 +1,17 @@
 import styles from "./DirectionSearch.module.scss";
 import PlacesAutoComplete from "../PlacesAutocomplete";
+import { useContext } from "react";
+import { GeoLocationContext } from "../../context/GeoLocationContext";
 // React Icon
 import { BsCircle } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 
 function DirectionSearch(props) {
   const { setSelectedDep, setSelectedDest } = props;
+  const currentStopAddress = useContext(GeoLocationContext).currentStopAddress;
+  const setCurrentStopAddress =
+    useContext(GeoLocationContext).setCurrentStopAddress;
+
   return (
     <div className={styles.direction_search}>
       <div className={styles.address_dep}>
@@ -19,7 +25,11 @@ function DirectionSearch(props) {
         <div className={styles.icon}>
           <SlLocationPin size={24} />
         </div>
-        <PlacesAutoComplete setSelected={setSelectedDest} />
+        <PlacesAutoComplete
+          setSelected={setSelectedDest}
+          defaultDestination={currentStopAddress}
+          setCurrentStopAddress={setCurrentStopAddress}
+        />
       </div>
     </div>
   );

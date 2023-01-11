@@ -17,6 +17,7 @@ function Map(props) {
     setActiveMarker,
     isModalOpen,
     directions,
+    covertGPS,
   } = props;
   const center = { lat: 25.04792, lng: 121.51741 }; // 預設中心點台北車站
   const handleActiveMarker = (markerId) => {
@@ -85,6 +86,9 @@ function Map(props) {
                     sbi={item.sbi}
                     bemp={item.bemp}
                     updateTime={item.updateTime}
+                    lat={item.lat}
+                    lng={item.lng}
+                    covertGPS={covertGPS}
                   />
                 </div>
               ) : null}
@@ -100,6 +104,9 @@ function Map(props) {
                     sbi={item.sbi}
                     bemp={item.bemp}
                     updateTime={item.updateTime}
+                    lat={item.lat}
+                    lng={item.lng}
+                    covertGPS={covertGPS}
                   />
                 </InfoWindow>
               ) : null}
