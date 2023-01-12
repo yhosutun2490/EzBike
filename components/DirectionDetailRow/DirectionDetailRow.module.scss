@@ -1,0 +1,40 @@
+.directions_details {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.3rem;
+  background-color: aliceblue;
+  padding-bottom: 25px;
+  transform-origin: top;
+  animation: move-in 0.3s 1 ease 0s;
+  animation-direction: alternate;
+}
+@keyframes move-in {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+.travel_mode,.duration_time {
+  font-weight:700 ;
+  margin-right: 10px;
+}
+.duration_info,.distance_info {
+  display: flex;
+  font-weight: 400;
+  p {
+    margin-right: 5px;
+  }
+}
+.duration_info {
+  margin-right: 10px;
+}

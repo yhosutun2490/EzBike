@@ -1,11 +1,13 @@
 import Head from "next/head";
 import styles from "./DirectionPage.module.scss";
+import ubikeApi from "../api/ubikeApi";
 import Map from "../../components/Map";
 import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../../context/bikesContext";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
 import DirectionSearchNavBar from "../../components/DirectionSearchNavBar";
+import DirectionDetailRow from "../../components/DirectionDetailRow";
 
 const libraries = ["places"];
 
@@ -40,16 +42,7 @@ function DirectionPage(props) {
   // 每分鐘重新更新站點資訊
   useEffect(() => {
     const timer = setInterval(async () => {
-      const allBikesData = await fetch(
-        "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
-
+      const allBikesData = await ubikeApi();
       setBikeStops(allBikesData);
     }, 60000);
 
@@ -95,8 +88,6 @@ function DirectionPage(props) {
     );
   }
 
-  console.log(directions);
-
   return (
     <>
       <Head>
@@ -109,7 +100,7 @@ function DirectionPage(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles["nav-bar"]}>
+        <div className={styles.nav_bar}>
           {!isLoaded ? (
             <p>isLoading...</p>
           ) : (
@@ -118,23 +109,31 @@ function DirectionPage(props) {
               setSelectedDest={setDestinationGPS}
               setTravelMethod={setTravelMethod}
               travelMethod={travelMethod}
+              setDirections={setDirections}
+            />
+          )}
+          {directions && (
+            <DirectionDetailRow
+              directions={directions}
+              travelMethod={travelMethod}
             />
           )}
         </div>
-        {directions && <div></div>}
-        <div className={styles["map"]}>
-          {!isLoaded ? (
-            <p>Loading....</p>
-          ) : (
-            <Map
-              bikesData={bikeStops}
-              setSelected={setDepartureGPS}
-              activeMarker={activeMarker}
-              setActiveMarker={setActiveMarker}
-              isModalOpen={isModalOpen}
-              directions={directions}
-            />
-          )}
+        <div className={styles.map_container}>
+          <div className={styles.map}>
+            {!isLoaded ? (
+              <p>Loading....</p>
+            ) : (
+              <Map
+                bikesData={bikeStops}
+                setSelected={setDepartureGPS}
+                activeMarker={activeMarker}
+                setActiveMarker={setActiveMarker}
+                isModalOpen={isModalOpen}
+                directions={directions}
+              />
+            )}
+          </div>
         </div>
         <button
           className={styles.navigation_btn}
@@ -149,28 +148,7 @@ function DirectionPage(props) {
 
 // server SSG fetch data
 export async function getStaticProps() {
-  let allBikesData = await fetch(
-    "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-  const responseYear = allBikesData[0].infoDate.slice(0, 4);
-  // 公共api有時會載到2022舊資料
-  if (responseYear === "2022") {
-    allBikesData = await fetch(
-      "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
-    )
-      .then(function (response) {
-        return response.json();
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
-  }
+  let allBikesData = await ubikeApi();
   return {
     props: {
       allBikesData: allBikesData,
