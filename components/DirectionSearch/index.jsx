@@ -7,10 +7,8 @@ import { BsCircle } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
 
 function DirectionSearch(props) {
-  const { setSelectedDep, setSelectedDest } = props;
-  const currentStopAddress = useContext(GeoLocationContext).currentStopAddress;
-  const setCurrentStopAddress =
-    useContext(GeoLocationContext).setCurrentStopAddress;
+  const { setSelectedDep, setSelectedDest, setTravelMethod, setDirections } =
+    props;
 
   return (
     <div className={styles.direction_search}>
@@ -18,7 +16,11 @@ function DirectionSearch(props) {
         <div className={`${styles.icon} ${styles.icon_dep}`}>
           <BsCircle size={24} color="skyblue" />
         </div>
-        <PlacesAutoComplete setSelected={setSelectedDep} />
+        <PlacesAutoComplete
+          setSelected={setSelectedDep}
+          setTravelMethod={setTravelMethod}
+          setDirections={setDirections}
+        />
       </div>
       <div className={styles.dot_line}></div>
       <div className={styles.address_dest}>
@@ -27,8 +29,8 @@ function DirectionSearch(props) {
         </div>
         <PlacesAutoComplete
           setSelected={setSelectedDest}
-          defaultDestination={currentStopAddress}
-          setCurrentStopAddress={setCurrentStopAddress}
+          setTravelMethod={setTravelMethod}
+          setDirections={setDirections}
         />
       </div>
     </div>

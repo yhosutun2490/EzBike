@@ -4,7 +4,9 @@ function MetroTransitBox(props) {
   console.log(routeData);
   return (
     <div className={styles.metro_route}>
-      <div className={styles.route_name}>{routeData.transit.line.name}</div>
+      {routeData.transit.line.agencies[0].name === "台北捷運" && (
+        <div className={styles.route_name}>{routeData.transit.line.name}</div>
+      )}
     </div>
   );
 }

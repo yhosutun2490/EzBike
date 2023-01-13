@@ -77,7 +77,7 @@ function DirectionPage(props) {
         // 可以選擇轉乘公車或捷運
         transitOptions: {
           modes: [`${defaultMode}`],
-          routingPreference: "FEWER_TRANSFERS",
+          // routingPreference: "FEWER_TRANSFERS",
         },
       },
       (result, status) => {

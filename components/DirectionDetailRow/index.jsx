@@ -12,6 +12,7 @@ function DirectionDetailRow(props) {
   const routeData = routesSteps.filter(
     (data) => data.travel_mode === "TRANSIT"
   );
+
   switch (travelMethod) {
     case "bike":
       travelMethodText = "騎單車";

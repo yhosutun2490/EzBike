@@ -23,6 +23,8 @@ function DirectionSearchNavBar(props) {
         <DirectionSearch
           setSelectedDep={setSelectedDep}
           setSelectedDest={setSelectedDest}
+          setTravelMethod={setTravelMethod}
+          setDirections={setDirections}
         />
       </div>
       <div className={styles.travel_mode}>

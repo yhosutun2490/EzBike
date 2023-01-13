@@ -13,7 +13,7 @@ import {
 import "@reach/combobox/styles.css";
 
 function PlacesAutoComplete(props) {
-  const { setSelected } = props;
+  const { setSelected, setTravelMethod, setDirections } = props;
   const {
     ready,
     value,
@@ -30,9 +30,18 @@ function PlacesAutoComplete(props) {
     const { lat, lng } = await getLatLng(results[0]);
     setSelected({ lat, lng });
   }
+  // 使用者再次點擊輸入框時
+  function handleOnFucus() {
+    setTravelMethod(null);
+    setDirections(null);
+  }
 
   return (
-    <Combobox onSelect={handleSelected} className={styles["combobox-box"]}>
+    <Combobox
+      onSelect={handleSelected}
+      className={styles["combobox-box"]}
+      onFocus={handleOnFucus}
+    >
       <ComboboxInput
         value={value}
         onChange={(e) => {
