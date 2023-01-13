@@ -6,23 +6,19 @@ import { MdDirectionsBike } from "react-icons/md";
 import { FaBusAlt } from "react-icons/fa";
 
 function DirectionModeBar(props) {
-  const { travelMethod, setTravelMethod, setDirections, fetchGoogleDirection } =
+  const { travelMethod, setTravelMethod, fetchGoogleDirection } =
     props;
   //切換交通模式時要清掉舊的指引路線
   function handleOnTravelBus() {
     setTravelMethod("bus");
     fetchGoogleDirection("bus");
-    setDirections(null);
   }
   function handleOnTravelMetro() {
     setTravelMethod("metro");
-    fetchGoogleDirection("metro");
-    setDirections(null);
   }
   function handleOnTravelBike() {
     setTravelMethod("bike");
     fetchGoogleDirection("bike");
-    setDirections(null);
   }
   return (
     <div className={styles.travel_mode}>

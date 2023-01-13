@@ -1,4 +1,4 @@
-function distance(lat1, lon1, lat2, lon2, unit) {
+function distanceCaculator(lat1, lon1, lat2, lon2, unit) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
     }
@@ -20,4 +20,4 @@ function distance(lat1, lon1, lat2, lon2, unit) {
     }
 }
 
-export default distance
+export default distanceCaculator
