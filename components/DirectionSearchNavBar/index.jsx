@@ -10,6 +10,7 @@ function DirectionSearchNavBar(props) {
     setTravelMethod,
     setDirections,
     travelMethod,
+    fetchGoogleDirection,
   } = props;
   return (
     <div className={styles.direction_search}>
@@ -29,6 +30,7 @@ function DirectionSearchNavBar(props) {
           setTravelMethod={setTravelMethod}
           travelMethod={travelMethod}
           setDirections={setDirections}
+          fetchGoogleDirection={fetchGoogleDirection}
         />
       </div>
     </div>

@@ -23,7 +23,7 @@ function DirectionPage(props) {
   const setDestinationGPS = useContext(GeoLocationContext).setDestinationGPS;
 
   const [directions, setDirections] = useState(null); //導航方向
-  const [travelMethod, setTravelMethod] = useState("bike");
+  const [travelMethod, setTravelMethod] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const setBikeStops = bikeStopsData.setAllBikesData; // 所有單車站站點資訊(context 管理)
@@ -109,6 +109,7 @@ function DirectionPage(props) {
               setSelectedDest={setDestinationGPS}
               setTravelMethod={setTravelMethod}
               travelMethod={travelMethod}
+              fetchGoogleDirection={fetchGoogleDirection}
               setDirections={setDirections}
             />
           )}
@@ -135,12 +136,6 @@ function DirectionPage(props) {
             )}
           </div>
         </div>
-        <button
-          className={styles.navigation_btn}
-          onClick={() => fetchGoogleDirection(travelMethod)}
-        >
-          導航
-        </button>
       </main>
     </>
   );
