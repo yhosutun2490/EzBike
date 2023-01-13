@@ -7,6 +7,7 @@ import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../context/bikesContext";
 
+
 const libraries = ["places"];
 
 export default function Home(props) {

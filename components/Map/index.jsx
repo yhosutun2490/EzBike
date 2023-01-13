@@ -7,7 +7,16 @@ import {
   MarkerClusterer,
   InfoWindow,
   DirectionsRenderer,
+  Circle,
 } from "@react-google-maps/api";
+
+const defaultCircleOption = {
+  strokeColor: "blue",
+  strokeWeight: 1,
+  zIndex: -1,
+  fillOpacity: 0.2,
+  fillColor: "grey",
+};
 
 function Map(props) {
   const {
@@ -17,7 +26,8 @@ function Map(props) {
     setActiveMarker,
     isModalOpen,
     directions,
-    covertGPS,
+    departureGPS,
+    destinationGPS,
   } = props;
   const center = { lat: 25.04792, lng: 121.51741 }; // 預設中心點台北車站
   const handleActiveMarker = (markerId) => {
@@ -88,7 +98,6 @@ function Map(props) {
                     updateTime={item.updateTime}
                     lat={item.lat}
                     lng={item.lng}
-                    covertGPS={covertGPS}
                   />
                 </div>
               ) : null}
@@ -106,7 +115,6 @@ function Map(props) {
                     updateTime={item.updateTime}
                     lat={item.lat}
                     lng={item.lng}
-                    covertGPS={covertGPS}
                   />
                 </InfoWindow>
               ) : null}
@@ -122,6 +130,20 @@ function Map(props) {
           scaledSize: { width: 40, height: 40 },
         }}
       />
+      {directions && (
+        <Circle
+          center={departureGPS}
+          radius={500}
+          options={defaultCircleOption}
+        />
+      )}
+      {directions && (
+        <Circle
+          center={destinationGPS}
+          radius={500}
+          options={defaultCircleOption}
+        />
+      )}
     </GoogleMap>
   );
 }

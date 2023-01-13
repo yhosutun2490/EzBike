@@ -8,6 +8,7 @@ import { BikesContext } from "../../context/bikesContext";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
 import DirectionSearchNavBar from "../../components/DirectionSearchNavBar";
 import DirectionDetailRow from "../../components/DirectionDetailRow";
+import distance from "../../utils/distance"; // 測量兩點直線距離
 
 const libraries = ["places"];
 
@@ -132,6 +133,8 @@ function DirectionPage(props) {
                 setActiveMarker={setActiveMarker}
                 isModalOpen={isModalOpen}
                 directions={directions}
+                departureGPS={departureGPS}
+                destinationGPS={destinationGPS}
               />
             )}
           </div>
