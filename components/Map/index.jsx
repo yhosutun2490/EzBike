@@ -29,7 +29,7 @@ function Map(props) {
     departureGPS,
     destinationGPS,
   } = props;
-  const center = { lat: 25.04792, lng: 121.51741 }; // 預設中心點台北車站
+  const center = { lat: 25.04948010031126, lng: 121.53874337838153 }; // 預設中心點
   const handleActiveMarker = (markerId) => {
     if (markerId === activeMarker) {
       return;
@@ -133,14 +133,14 @@ function Map(props) {
       {directions && (
         <Circle
           center={departureGPS}
-          radius={500}
+          radius={700}
           options={defaultCircleOption}
         />
       )}
       {directions && (
         <Circle
           center={destinationGPS}
-          radius={500}
+          radius={700}
           options={defaultCircleOption}
         />
       )}

@@ -33,7 +33,7 @@ function filterStopsInCircle(bikeStopsData, depGps, destGps) {
       destGps.lng,
       "K"
     );
-    return distanceDepStops <= 0.5 || distanceDestStops <= 0.5;
+    return distanceDepStops <= 0.7 || distanceDestStops <= 0.7;
   });
   return inCircleStops;
 }
@@ -67,7 +67,7 @@ function DirectionPage(props) {
   });
 
   // Google Direction函式
-  function fetchGoogleDirection(travelMethod) {
+  async function fetchGoogleDirection(travelMethod) {
     let travelMode = "";
     let defaultMode = "SUBWAY";
     // 交通方式
@@ -84,7 +84,7 @@ function DirectionPage(props) {
       return;
     }
     const service = new google.maps.DirectionsService();
-    service.route(
+    await service.route(
       {
         origin: departureGPS,
         destination: destinationGPS,
@@ -98,13 +98,15 @@ function DirectionPage(props) {
       (result, status) => {
         if (status === "OK" && result) {
           setDirections(result);
+        } else {
+          console.error(error);
         }
       }
     );
   }
 
   // 按下導航時篩選範圍內站點
-  let inCircleStops = "";
+  let inCircleStops = [];
   if (directions) {
     inCircleStops = filterStopsInCircle(
       bikeStops,
@@ -163,7 +165,7 @@ function DirectionPage(props) {
               <p>Loading....</p>
             ) : (
               <Map
-                bikesData={inCircleStops ? inCircleStops : bikeStops}
+                bikesData={inCircleStops}
                 setSelected={setDepartureGPS}
                 activeMarker={activeMarker}
                 setActiveMarker={setActiveMarker}

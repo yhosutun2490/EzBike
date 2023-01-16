@@ -20,6 +20,7 @@ function DirectionSearch(props) {
           setSelected={setSelectedDep}
           setTravelMethod={setTravelMethod}
           setDirections={setDirections}
+          dataId="departure"
         />
       </div>
       <div className={styles.dot_line}></div>
@@ -31,6 +32,7 @@ function DirectionSearch(props) {
           setSelected={setSelectedDest}
           setTravelMethod={setTravelMethod}
           setDirections={setDirections}
+          dataId="destination"
         />
       </div>
     </div>

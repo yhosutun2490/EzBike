@@ -1,4 +1,5 @@
 import styles from "./PlacesAutoComplete.module.scss";
+import { useRouter } from "next/router";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -11,9 +12,12 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import { GeoLocationContext } from "../../context/GeoLocationContext";
+import { useContext } from "react";
 
 function PlacesAutoComplete(props) {
-  const { setSelected, setTravelMethod, setDirections } = props;
+  const { setSelected, setTravelMethod, setDirections, dataId } = props;
+  const { setDepartureGPS, setDestinationGPS } = useContext(GeoLocationContext);
   const {
     ready,
     value,
@@ -21,6 +25,7 @@ function PlacesAutoComplete(props) {
     suggestions: { status, data },
     clearSuggestions,
   } = usePlacesAutocomplete();
+  const route = useRouter();
 
   // 被選到的地址需要轉換
   async function handleSelected(address) {
@@ -31,7 +36,17 @@ function PlacesAutoComplete(props) {
     setSelected({ lat, lng });
   }
   // 使用者再次點擊輸入框時
-  function handleOnFucus() {
+  function handleOnFucus(e) {
+    const locationInputName = e.target.parentNode.dataset.id;
+    const routeName = route.pathname.slice(1);
+    if (routeName !== "direction ") {
+      return;
+    }
+    if (locationInputName === "departure") {
+      setDepartureGPS(null);
+    } else if (locationInputName === "destination") {
+      setDestinationGPS(null);
+    }
     setTravelMethod(null);
     setDirections(null);
   }
@@ -40,7 +55,8 @@ function PlacesAutoComplete(props) {
     <Combobox
       onSelect={handleSelected}
       className={styles["combobox-box"]}
-      onFocus={handleOnFucus}
+      onFocus={(e) => handleOnFucus(e)}
+      data-id={dataId}
     >
       <ComboboxInput
         value={value}

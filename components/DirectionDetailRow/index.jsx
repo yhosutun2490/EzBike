@@ -34,8 +34,6 @@ function DirectionDetailRow(props) {
     default:
       console.log(`Sorry, we are out of TravelMode.`);
   }
-  console.log(routeData);
-
   return (
     <div className={styles.directions_details}>
       <div className={styles.travel_mode}>{travelMethodText}</div>
