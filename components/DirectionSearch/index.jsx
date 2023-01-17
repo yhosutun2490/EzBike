@@ -1,5 +1,5 @@
 import styles from "./DirectionSearch.module.scss";
-import PlacesAutoComplete from "../PlacesAutocomplete";
+import PlacesAutoComplete from "../PlacesAutoComplete";
 import { useContext } from "react";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
 // React Icon
