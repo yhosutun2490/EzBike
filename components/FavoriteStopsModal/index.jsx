@@ -1,6 +1,6 @@
 import styles from "./FavoriteStopsModal.module.scss";
 import { useContext } from "react";
-import { BikesContext } from "../../context/bikesContext";
+import { BikesContext } from "../../context/BikesContext";
 import FavoriteStopCard from "../FovariteStopCard";
 function FavoriteStopsModal(props) {
   const { setIsFavoriteOpen, bikeStops } = props;

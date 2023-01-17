@@ -1,4 +1,4 @@
-import PlacesAutoComplete from "../PlacesAutocomplete";
+import PlacesAutoComplete from "../PlacesAutoComplete";
 import styles from "./SearchNavBar.module.scss";
 import Image from "next/image";
 import Link from "next/link";

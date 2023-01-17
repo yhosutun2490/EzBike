@@ -1,6 +1,6 @@
 import styles from "./AddFavoriteBtn.module.scss";
 import { useContext } from "react";
-import { BikesContext } from "../../../context/bikesContext";
+import { BikesContext } from "../../../context/BikesContext";
 
 function AddFavoriteBtn(props) {
   const { stopsId } = props;

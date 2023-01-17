@@ -5,7 +5,7 @@ import ubikeApi from "../api/ubikeApi";
 import Map from "../../components/Map";
 import { useState, useEffect, useContext, useMemo } from "react";
 import { useLoadScript } from "@react-google-maps/api";
-import { BikesContext } from "../../context/bikesContext";
+import { BikesContext } from "../../context/BikesContext";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
 import DirectionSearchNavBar from "../../components/DirectionSearchNavBar";
 import DirectionDetailRow from "../../components/DirectionDetailRow";
