@@ -1,8 +1,7 @@
 import styles from "./FavoriteStopsModal.module.scss";
-import { GiDutchBike } from "react-icons/gi";
-import { FaParking } from "react-icons/fa";
 import { useContext } from "react";
 import { BikesContext } from "../../context/bikesContext";
+import FavoriteStopCard from "../FovariteStopCard";
 function FavoriteStopsModal(props) {
   const { setIsFavoriteOpen, bikeStops } = props;
   const favoriteStops = useContext(BikesContext).userFavoriteStops;
@@ -27,22 +26,13 @@ function FavoriteStopsModal(props) {
       <div className={styles.main_modal}>
         <div className={styles.page_cluster}>
           {filterStops.map((item) => (
-            <div key={item.sno} className={styles.stop_card}>
-              <div className={styles.stop_name}>
-                <p className={styles.stop_title}>站點名稱</p>
-                <div className={styles.stop_name_detail}>{item.ar}</div>
-              </div>
-              <div className={styles.bikes_info}>
-                <div className={styles.rent_count}>
-                  <GiDutchBike size={24} />
-                  <div className={styles.count_number}>{item.sbi}</div>
-                </div>
-                <div className={styles.park_count}>
-                  <FaParking size={24} />
-                  <div className={styles.count_number}>{item.bemp}</div>
-                </div>
-              </div>
-            </div>
+            <FavoriteStopCard
+              key={item.sno}
+              stopName={item.ar}
+              rentCount={item.sbi}
+              parkCount={item.bemp}
+              stopId={item.sno}
+            />
           ))}
         </div>
       </div>

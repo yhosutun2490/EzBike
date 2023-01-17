@@ -1,5 +1,7 @@
 import PlacesAutoComplete from "../PlacesAutocomplete";
 import styles from "./SearchNavBar.module.scss";
+import Image from "next/image";
+import Link from "next/link";
 import { FaBars } from "react-icons/fa";
 import { BsGear } from "react-icons/bs";
 import { CgUserList } from "react-icons/cg";
@@ -18,6 +20,31 @@ function SearchNavBar(props) {
 
   return (
     <header className={styles["header"]}>
+      <div className={styles.nav_desk_main}>
+        <div className={styles.logo}>
+          <Image
+            src="/images/EzBike.png"
+            width={80}
+            height={80}
+            alt="logo"
+            className={styles.logo_icon}
+          />
+          <p className={styles.logo_text}>找單車可以很Easy</p>
+        </div>
+
+        <div className={styles.nav_list}>
+          <div className={styles.link_card}>
+            <Link href="/">搜尋頁</Link>
+          </div>
+          <div className={styles.link_card}>
+            <Link href="/direction">導航頁</Link>
+          </div>
+          <div className={styles.link_card}>
+            <Link href="/">單車活動(建置中)</Link>
+          </div>
+        </div>
+      </div>
+
       <nav className={styles["nav"]}>
         <div
           className={`${styles.icon} ${styles.icon_hamburger}`}
@@ -45,32 +72,6 @@ function SearchNavBar(props) {
           <BsGear size={32} />
         </div>
       </nav>
-      <div className={styles.introduction}>
-        <div className={`${styles.intro_content} ${styles.normal}`}>
-          <img
-            src="https://icon-library.com/images/cycling-icon-png/cycling-icon-png-15.jpg"
-            alt="normal-bike"
-            className={styles.icon}
-          />
-          <p className={styles.intro_note}>正常租借</p>
-        </div>
-        <div className={`${styles.intro_content} ${styles.rent}`}>
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Symbole_AMP_V%C3%A9lo.svg"
-            alt="lack-renting"
-            className={styles.icon}
-          />
-          <p className={styles.intro_note}>租借數量不足</p>
-        </div>
-        <div className={`${styles.intro_content} ${styles.park}`}>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/9050/9050693.png"
-            alt="lack-parking"
-            className={styles.icon}
-          />
-          <p className={styles.intro_note}>停車位不足</p>
-        </div>
-      </div>
     </header>
   );
 }

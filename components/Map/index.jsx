@@ -33,9 +33,7 @@ function Map(props) {
   } = props;
   const { userGPS } = useContext(GeoLocationContext); //使用者自己的定位
   const defaultCenter = { lat: 25.04948010031126, lng: 121.53874337838153 }; // 預設中心點
-  console.log(userGPS);
   const center = userGPS !== null ? userGPS : defaultCenter;
-  console.log("center:", center);
   const handleActiveMarker = (markerId) => {
     if (markerId === activeMarker) {
       return;
@@ -48,7 +46,7 @@ function Map(props) {
     "https://icon-library.com/images/cycling-icon-png/cycling-icon-png-15.jpg";
   return (
     <GoogleMap
-      zoom={18}
+      zoom={17}
       center={position ? position : center}
       mapContainerClassName={styles["map-container"]}
       onClick={() => setActiveMarker(false)}

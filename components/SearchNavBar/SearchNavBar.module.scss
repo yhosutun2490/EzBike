@@ -2,18 +2,35 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color:transparent;
+  border-radius: 8px;
+  padding-bottom: 2%;
   
 .nav {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   position: relative; // 最愛站點視窗定位用
   }
 }
 .input {
+  display: flex;
   flex-grow: 1; //剩下空間都分配給input
   padding: 0 2%;
+  .stop_detail {
+    display: none;
+    font-size: 1.5rem;
+  }
+  @media screen and (min-width: 1000px) {
+    flex-grow: 0;
+    width: 60%;
+    margin: 0 auto;
+    .stop_detail {
+        display: flex;
+        width: 20%;
+        margin-left: 5%;
+        justify-content: space-between;
+      }
+  }
 }
 .icon {
   cursor: pointer;
@@ -23,21 +40,31 @@
   margin-left: auto;
   margin-right: 5%;
 }
-
-.introduction {
-  display: flex;
-  justify-content: space-between;
-  & .intro_content {
-    display: flex;
-    align-items: center;
-    & .intro_note {
-      margin-left: 5px;
-      font-size: 1rem;
-      font-weight: 400;
-    }
+.icon_hamburger,.icon_love_list,.icon_setting {
+  @media screen and (min-width: 1000px) {
+    display: none;
+    
   }
 }
-.icon {
-  width: 32px;
-  height: 32px;
+.nav_desk_main {
+  display: none;
+  .nav_list {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.8rem;
+  }
+  @media screen and (min-width: 1000px) {
+      display: flex;
+      align-items: center;
+    }
+}
+
+.logo_text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2rem;
+}
+
+.logo_icon {
+  border-radius: 50px;
 }

@@ -1,0 +1,25 @@
+.introduction {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  background-color: rgb(225, 220, 141);
+  border-radius: 10px;
+  & .intro_content {
+    display: flex;
+    align-items: center;
+
+    & .intro_note {
+      margin-left: 5px;
+      font-size: 1.3rem;
+      font-weight: 400;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    width: 60%;
+    margin: 0 auto;
+    .intro_note {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+  }
+}

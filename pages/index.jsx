@@ -1,12 +1,14 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.scss";
+import styles from "./Home.module.scss";
 import ubikeApi from "./api/ubikeApi";
 import Map from "../components/Map";
 import SearchNavBar from "../components/SearchNavBar";
+import StopStatusRow from "../components/StopStatusRow";
 import UserGeoLocationBtn from "../components/UserGeoLocationBtn";
 import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../context/bikesContext";
+import FavoriteStopCard from "../components/FovariteStopCard";
 
 const libraries = ["places"];
 
@@ -17,6 +19,7 @@ export default function Home(props) {
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false); // 最愛站點清單
   const setBikeStops = bikeStopsData.setAllBikesData; // 所有單車站站點資訊(context 管理)
+  const { userFavoriteStops } = useContext(BikesContext); //使用者最愛站點資料
   const bikeStops = bikeStopsData.allBikesData
     ? bikeStopsData.allBikesData
     : props.allBikesData; //第一次是client端是空資料，用server SSG props
@@ -41,6 +44,12 @@ export default function Home(props) {
     };
   }, [setBikeStops]);
 
+  // 將最愛站點的id比對所有站點資料
+  const transArray = Object.values(bikeStops); //物件轉陣列
+  let filterStops = transArray.filter((stop) =>
+    userFavoriteStops.includes(stop.sno)
+  );
+
   return (
     <>
       <Head>
@@ -52,7 +61,7 @@ export default function Home(props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <div className={styles.body_container}>
         <div className={styles["nav-bar"]}>
           {!isLoaded ? (
             <p>Loading....</p>
@@ -67,24 +76,42 @@ export default function Home(props) {
             />
           )}
         </div>
-        <div className={styles["map"]}>
-          {!isLoaded ? (
-            <p>Loading....</p>
-          ) : (
-            <Map
-              bikesData={bikeStops}
-              position={selected}
-              setSelected={setSelected}
-              activeMarker={activeMarker}
-              setActiveMarker={setActiveMarker}
-              isModalOpen={isModalOpen}
-            />
-          )}
-        </div>
-        <div className={styles.geolocation_btn_wrap}>
-          <UserGeoLocationBtn />
-        </div>
-      </main>
+        <StopStatusRow />
+        <main className={styles.main}>
+          <div className={styles.favorite_stops_list}>
+            {filterStops.length > 0 && (
+              <div className={styles.favorite_title}>最愛站點清單</div>
+            )}
+            {filterStops?.map((item) => (
+              <FavoriteStopCard
+                key={item.sno}
+                stopName={item.ar}
+                rentCount={item.sbi}
+                parkCount={item.bemp}
+                stopId={item.sno}
+              />
+            ))}
+          </div>
+          <div className={styles.map}>
+            {!isLoaded ? (
+              <p>Loading....</p>
+            ) : (
+              <Map
+                bikesData={bikeStops}
+                position={selected}
+                setSelected={setSelected}
+                activeMarker={activeMarker}
+                setActiveMarker={setActiveMarker}
+                isModalOpen={isModalOpen}
+              />
+            )}
+            <div className={styles.geolocation_btn_wrap}>
+              <UserGeoLocationBtn />
+            </div>
+          </div>
+        </main>
+        <footer className={styles.footer}></footer>
+      </div>
     </>
   );
 }
