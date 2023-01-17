@@ -8,7 +8,7 @@ import UserGeoLocationBtn from "../components/UserGeoLocationBtn";
 import Footer from "../components/Footer";
 import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
-import { BikesContext } from "../context/bikesContext";
+import { BikesContext } from "../context/BikesContext";
 import FavoriteStopCard from "../components/FovariteStopCard";
 
 const libraries = ["places"];
