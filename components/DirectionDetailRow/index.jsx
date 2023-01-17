@@ -19,7 +19,7 @@ function DirectionDetailRow(props) {
       break;
     case "metro":
       if (!routeData.length) {
-        travelMethodText = "步行多運動就可以囉";
+        travelMethodText = "無捷運搭乘路線，推薦您步行";
       } else {
         travelMethodText = "搭捷運";
       }

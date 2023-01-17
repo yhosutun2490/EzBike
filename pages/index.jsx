@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.scss";
 import ubikeApi from "./api/ubikeApi";
 import Map from "../components/Map";
 import SearchNavBar from "../components/SearchNavBar";
+import UserGeoLocationBtn from "../components/UserGeoLocationBtn";
 import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../context/bikesContext";
@@ -79,6 +80,9 @@ export default function Home(props) {
               isModalOpen={isModalOpen}
             />
           )}
+        </div>
+        <div className={styles.geolocation_btn_wrap}>
+          <UserGeoLocationBtn />
         </div>
       </main>
     </>
