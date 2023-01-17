@@ -29,7 +29,10 @@ function SearchNavBar(props) {
             alt="logo"
             className={styles.logo_icon}
           />
-          <p className={styles.logo_text}>找單車可以很Easy</p>
+          <div className={styles.logo_text}>
+            <p className={styles.main_text}>EzBike</p>
+            <p className={styles.sub_text}>Finding U-bike in Taipei is Easy!</p>
+          </div>
         </div>
 
         <div className={styles.nav_list}>

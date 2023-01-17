@@ -28,10 +28,9 @@ function Map(props) {
     setActiveMarker,
     isModalOpen,
     directions,
-    departureGPS,
-    destinationGPS,
   } = props;
-  const { userGPS } = useContext(GeoLocationContext); //使用者自己的定位
+  const { userGPS, departureGPS, destinationGPS } =
+    useContext(GeoLocationContext); //使用者自己的定位
   const defaultCenter = { lat: 25.04948010031126, lng: 121.53874337838153 }; // 預設中心點
   const center = userGPS !== null ? userGPS : defaultCenter;
   const handleActiveMarker = (markerId) => {
@@ -74,12 +73,12 @@ function Map(props) {
               icon={
                 item.sbi <= 3
                   ? {
-                      url: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Symbole_AMP_V%C3%A9lo.svg",
+                      url: "/images/no-rent-bike.svg",
                       scaledSize: { width: 36, height: 36 },
                     }
                   : item.bemp <= 3
                   ? {
-                      url: "https://cdn-icons-png.flaticon.com/512/9050/9050693.png",
+                      url: "/images/no-park-site.png",
                       scaledSize: { width: 50, height: 50 },
                     }
                   : {
@@ -147,6 +146,9 @@ function Map(props) {
           radius={700}
           options={defaultCircleOption}
         />
+      )}
+      {userGPS && (
+        <Circle center={userGPS} radius={700} options={defaultCircleOption} />
       )}
     </GoogleMap>
   );

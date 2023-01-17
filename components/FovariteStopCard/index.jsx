@@ -24,6 +24,10 @@ function FavoriteStopCard(props) {
           <AddFavoriteBtn stopsId={stopId} />
         </div>
       </div>
+      <div className={styles.alert_msg}>
+        {rentCount <= 3 && <p>目前車輛不足，小心借到故障車喔~!</p>}
+        {parkCount <= 3 && <p>目前停車位不足，記得尋找站點備案喔~!</p>}
+      </div>
     </div>
   );
 }

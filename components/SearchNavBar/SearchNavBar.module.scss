@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color:transparent;
   border-radius: 8px;
   padding-bottom: 2%;
   
@@ -10,6 +9,8 @@
   display: flex;
   justify-content: space-between;
   position: relative; // 最愛站點視窗定位用
+  margin-top: 20px;
+
   }
 }
 .input {
@@ -48,6 +49,12 @@
 }
 .nav_desk_main {
   display: none;
+  padding: 10px 0;
+  background-color: var(--primary-500);
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px -5px #111;
+  color: #222626;
+
   .nav_list {
     flex-grow: 1;
     display: flex;
@@ -59,10 +66,20 @@
       align-items: center;
     }
 }
-
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
 .logo_text {
+  width: 200px;
+  word-wrap: break-word;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.2rem;
+  .main_text {
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
 }
 
 .logo_icon {

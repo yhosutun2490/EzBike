@@ -13,33 +13,41 @@
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
+    #16abff33 0deg,/* Primary: Cold Heights */
   );
 
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
+  --primary-100: #F2FBFF;
+    --primary-200: #BFF0FE;
+    --primary-300: #8AE8FB;
+    --primary-400: #54E0F1;
+    --primary-500: #21D4DE;
+    --primary-600: #0BB0AF;
+    --primary-700: #02827A;
+    --primary-800: #00544A;
+    --primary-900: #00261F;
+  
+    /* Accent: Spiced Purple */
+    --accent-100: #FFF2F5;
+    --accent-200: #FEBDCF;
+    --accent-300: #F684AA;
+    --accent-400: #E24A86;
+    --accent-500: #BA1660;
+    --accent-600: #950850;
+    --accent-700: #700240;
+    --accent-800: #4B002F;
+    --accent-900: #26001A;
+  
+    /* Neutral */
+    --neutral-100: #FAFCFC;
+    --neutral-200: #E7EAEB;
+    --neutral-300: #D3D9DA;
+    --neutral-400: #C1C8C9;
+    --neutral-500: #AEB7B8;
+    --neutral-600: #8A9393;
+    --neutral-700: #676F6F;
+    --neutral-800: #444B4A;
+    --neutral-900: #222626;
+ 
 }
 
 @media (prefers-color-scheme: dark) {

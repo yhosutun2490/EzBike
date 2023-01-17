@@ -5,6 +5,7 @@ import Map from "../components/Map";
 import SearchNavBar from "../components/SearchNavBar";
 import StopStatusRow from "../components/StopStatusRow";
 import UserGeoLocationBtn from "../components/UserGeoLocationBtn";
+import Footer from "../components/Footer";
 import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../context/bikesContext";
@@ -53,7 +54,7 @@ export default function Home(props) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>EzBike單車網頁App</title>
         <meta
           name="description"
           content="EzBike App for Taipei Ubike Users Search Ubikes Stops"
@@ -110,8 +111,10 @@ export default function Home(props) {
             </div>
           </div>
         </main>
-        <footer className={styles.footer}></footer>
       </div>
+      <footer className={styles.footer}>
+        <Footer />
+      </footer>
     </>
   );
 }
