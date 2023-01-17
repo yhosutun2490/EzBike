@@ -9,6 +9,8 @@ import {
   DirectionsRenderer,
   Circle,
 } from "@react-google-maps/api";
+import { GeoLocationContext } from "../../context/GeoLocationContext";
+import { useContext } from "react";
 
 const defaultCircleOption = {
   strokeColor: "blue",
@@ -29,7 +31,11 @@ function Map(props) {
     departureGPS,
     destinationGPS,
   } = props;
-  const center = { lat: 25.04948010031126, lng: 121.53874337838153 }; // 預設中心點
+  const { userGPS } = useContext(GeoLocationContext); //使用者自己的定位
+  const defaultCenter = { lat: 25.04948010031126, lng: 121.53874337838153 }; // 預設中心點
+  console.log(userGPS);
+  const center = userGPS !== null ? userGPS : defaultCenter;
+  console.log("center:", center);
   const handleActiveMarker = (markerId) => {
     if (markerId === activeMarker) {
       return;
