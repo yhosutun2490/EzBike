@@ -90,6 +90,8 @@ export default function Home(props) {
                 rentCount={item.sbi}
                 parkCount={item.bemp}
                 stopId={item.sno}
+                lat={item.lat}
+                lng={item.lng}
               />
             ))}
           </div>

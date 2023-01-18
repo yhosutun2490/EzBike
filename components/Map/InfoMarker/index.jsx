@@ -2,6 +2,7 @@ import styles from "./InfoMarker.module.scss";
 import { GiDutchBike } from "react-icons/gi";
 import { FaParking } from "react-icons/fa";
 import AddFavoriteBtn from "../AddFavoriteBtn";
+import AddNavigationBtn from "../AddNavigationBtn";
 
 function InfoMarker(props) {
   const { id, ar, aren, sbi, bemp, updateTime, lat, lng } = props;
@@ -21,6 +22,9 @@ function InfoMarker(props) {
         </span>
         <div className={styles["add-btn"]}>
           <AddFavoriteBtn stopsId={id} />
+        </div>
+        <div className={styles["add-navigation-btn"]}>
+          <AddNavigationBtn lat={lat} lng={lng} />
         </div>
       </div>
       <div className={styles["bike-sub-info"]}>

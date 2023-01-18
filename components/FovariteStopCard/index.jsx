@@ -2,9 +2,10 @@ import styles from "./FavoriteStopCard.module.scss";
 import { GiDutchBike } from "react-icons/gi";
 import { FaParking } from "react-icons/fa";
 import AddFavoriteBtn from "../Map/AddFavoriteBtn";
+import AddNavigationBtn from "../Map/AddNavigationBtn";
 
 function FavoriteStopCard(props) {
-  const { stopId, stopName, rentCount, parkCount } = props;
+  const { stopId, stopName, rentCount, parkCount, lat, lng } = props;
   return (
     <div className={styles.stop_card}>
       <div className={styles.stop_name}>
@@ -22,6 +23,9 @@ function FavoriteStopCard(props) {
         </div>
         <div className={styles.add_fovorite_btn}>
           <AddFavoriteBtn stopsId={stopId} />
+        </div>
+        <div className={styles.add_navigation_btn}>
+          <AddNavigationBtn lat={lat} lng={lng} />
         </div>
       </div>
       <div className={styles.alert_msg}>

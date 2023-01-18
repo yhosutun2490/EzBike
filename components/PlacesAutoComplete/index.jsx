@@ -13,11 +13,13 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 function PlacesAutoComplete(props) {
-  const { setSelected, setTravelMethod, setDirections, dataId } = props;
-  const { setDepartureGPS, setDestinationGPS } = useContext(GeoLocationContext);
+  const { setSelected, setTravelMethod, setDirections, dataId, defaultValue } =
+    props;
+  const { setDepartureGPS, setDestinationGPS, departureGPS, destinationGPS } =
+    useContext(GeoLocationContext);
   const {
     ready,
     value,
@@ -50,6 +52,13 @@ function PlacesAutoComplete(props) {
     setTravelMethod(null);
     setDirections(null);
   }
+  // AutoCompelteInput帶入預設值
+  useEffect(() => {
+    async function handleDefaultValue() {
+      defaultValue === null ? setValue("") : setValue(defaultValue, false);
+    }
+    handleDefaultValue();
+  }, [defaultValue, setValue]);
 
   return (
     <Combobox

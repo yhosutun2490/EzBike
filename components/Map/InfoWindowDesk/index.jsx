@@ -2,6 +2,7 @@ import styles from "./InfoWindowDesk.module.scss";
 import { GiDutchBike } from "react-icons/gi";
 import { FaParking } from "react-icons/fa";
 import AddFavoriteBtn from "../AddFavoriteBtn";
+import AddNavigationBtn from "../AddNavigationBtn";
 
 function InfoWindowDesk(props) {
   const { id, ar, aren, sbi, bemp, updateTime, lat, lng } = props;
@@ -30,6 +31,9 @@ function InfoWindowDesk(props) {
         {updateTime}
         <div className={styles["add-btn"]}>
           <AddFavoriteBtn stopsId={id} />
+        </div>
+        <div className={styles["add-navigation-btn"]}>
+          <AddNavigationBtn lat={lat} lng={lng} />
         </div>
       </div>
     </div>

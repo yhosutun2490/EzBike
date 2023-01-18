@@ -1,13 +1,16 @@
 import styles from "./DirectionSearch.module.scss";
 import PlacesAutoComplete from "../PlacesAutoComplete";
+import { GeoLocationContext } from "../../context/GeoLocationContext";
 
 // React Icon
 import { BsCircle } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
+import { useContext } from "react";
 
 function DirectionSearch(props) {
   const { setSelectedDep, setSelectedDest, setTravelMethod, setDirections } =
     props;
+  const { searchStopAddress } = useContext(GeoLocationContext);
 
   return (
     <div className={styles.direction_search}>
@@ -32,6 +35,7 @@ function DirectionSearch(props) {
           setTravelMethod={setTravelMethod}
           setDirections={setDirections}
           dataId="destination"
+          defaultValue={searchStopAddress}
         />
       </div>
     </div>
