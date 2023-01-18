@@ -1,6 +1,7 @@
 import styles from "./DirectionSearch.module.scss";
 import PlacesAutoComplete from "../PlacesAutoComplete";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
+import reverseGPSApi from "../../pages/api/reverseGPSApi";
 
 // React Icon
 import { BsCircle } from "react-icons/bs";
@@ -10,7 +11,8 @@ import { useContext } from "react";
 function DirectionSearch(props) {
   const { setSelectedDep, setSelectedDest, setTravelMethod, setDirections } =
     props;
-  const { searchStopAddress } = useContext(GeoLocationContext);
+  // 如果使用者有點擊某個站點導航+自己的GPGS位置
+  const { searchStopAddress, userAddress } = useContext(GeoLocationContext);
 
   return (
     <div className={styles.direction_search}>
@@ -22,6 +24,7 @@ function DirectionSearch(props) {
           setSelected={setSelectedDep}
           setTravelMethod={setTravelMethod}
           setDirections={setDirections}
+          defaultValue={userAddress}
           dataId="departure"
         />
       </div>

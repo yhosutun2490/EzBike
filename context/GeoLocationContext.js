@@ -15,6 +15,7 @@ function GeoLocationProvider(props) {
   const [departureGPS, setDepartureGPS] = useState(null)  // 導航出發點GPS
   const [destinationGPS,setDestinationGPS] = useState(null) // 導航終點站GPS
   const [userGPS,setUserGPS] = useState(null) // 個人資料定位GPS
+  const [userAddress,setUserAddress] = useState(null) // 個人地址
   const [searchStopAddress, setSearchStopAddress] = useState(null) //目前想要導航站點地址
   
 
@@ -23,11 +24,14 @@ function GeoLocationProvider(props) {
      departureGPS,
      destinationGPS,
      userGPS,
+     userAddress,
      searchStopAddress,
      setDepartureGPS,
      setDestinationGPS,
      setUserGPS,
-     setSearchStopAddress
+     setSearchStopAddress,
+     setUserAddress
+
     }}>
       {children}
     </GeoLocationContext.Provider>

@@ -29,6 +29,8 @@ function DirectionModeBar(props) {
     await fetchGoogleDirection("metro");
   }
   async function handleOnTravelBike() {
+    console.log(departureGPS);
+    console.log(destinationGPS);
     if (departureGPS === null || destinationGPS === null) {
       alert("請輸入完整起始點和目的地");
       return;

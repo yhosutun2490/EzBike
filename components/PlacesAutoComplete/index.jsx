@@ -18,8 +18,7 @@ import { useContext, useEffect } from "react";
 function PlacesAutoComplete(props) {
   const { setSelected, setTravelMethod, setDirections, dataId, defaultValue } =
     props;
-  const { setDepartureGPS, setDestinationGPS, departureGPS, destinationGPS } =
-    useContext(GeoLocationContext);
+  const { setDepartureGPS, setDestinationGPS } = useContext(GeoLocationContext);
   const {
     ready,
     value,
@@ -54,7 +53,7 @@ function PlacesAutoComplete(props) {
   }
   // AutoCompelteInput帶入預設值
   useEffect(() => {
-    async function handleDefaultValue() {
+    function handleDefaultValue() {
       defaultValue === null ? setValue("") : setValue(defaultValue, false);
     }
     handleDefaultValue();
