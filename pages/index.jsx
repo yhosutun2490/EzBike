@@ -14,16 +14,12 @@ import FavoriteStopCard from "../components/FovariteStopCard";
 const libraries = ["places"];
 
 export default function Home(props) {
-  const bikeStopsData = useContext(BikesContext);
   const [selected, setSelected] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false); // 最愛站點清單
-  const setBikeStops = bikeStopsData.setAllBikesData; // 所有單車站站點資訊(context 管理)
-  const { userFavoriteStops } = useContext(BikesContext); //使用者最愛站點資料
-  const bikeStops = bikeStopsData.allBikesData
-    ? bikeStopsData.allBikesData
-    : props.allBikesData; //第一次是client端是空資料，用server SSG props
+  const { userFavoriteStops, allBikesData, setAllBikesData } =
+    useContext(BikesContext); //使用者最愛站點資料
 
   // 先用javascript CSR載地圖
   const { isLoaded } = useLoadScript({
@@ -33,20 +29,25 @@ export default function Home(props) {
     libraries,
   });
 
-  // 每分鐘重新更新站點資訊
+  // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
   useEffect(() => {
-    const timer = setInterval(async () => {
-      const allBikesData = await ubikeApi();
-      setBikeStops(allBikesData);
+    async function fetchUbikeData() {
+      const bikeStopsData = await ubikeApi();
+      setAllBikesData(bikeStopsData);
+    }
+    fetchUbikeData();
+    // 60秒後更新資料
+    const timer = setInterval(() => {
+      fetchUbikeData();
     }, 60000);
 
     return () => {
       clearInterval(timer);
     };
-  }, [setBikeStops]);
+  }, [setAllBikesData]);
 
   // 將最愛站點的id比對所有站點資料
-  const transArray = Object.values(bikeStops); //物件轉陣列
+  const transArray = Object.values(allBikesData); //物件轉陣列
   let filterStops = transArray.filter((stop) =>
     userFavoriteStops.includes(stop.sno)
   );
@@ -73,7 +74,7 @@ export default function Home(props) {
               setIsModalOpen={setIsModalOpen}
               setIsFavoriteOpen={setIsFavoriteOpen}
               isFavoriteOpen={isFavoriteOpen}
-              bikeStops={bikeStops}
+              bikeStops={allBikesData}
             />
           )}
         </div>
@@ -100,7 +101,7 @@ export default function Home(props) {
               <p>Loading....</p>
             ) : (
               <Map
-                bikesData={bikeStops}
+                bikesData={allBikesData}
                 position={selected}
                 setSelected={setSelected}
                 activeMarker={activeMarker}
@@ -122,12 +123,12 @@ export default function Home(props) {
 }
 
 // server SSG fetch data
-export async function getStaticProps() {
-  const allBikesData = await ubikeApi();
-  return {
-    props: {
-      allBikesData: allBikesData,
-    },
-    revalidate: 60,
-  };
-}
+// export async function getStaticProps() {
+//   const allBikesData = await ubikeApi();
+//   return {
+//     props: {
+//       allBikesData: allBikesData,
+//     },
+//     revalidate: 60,
+//   };
+// }

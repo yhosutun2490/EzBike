@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useState } from "react";
 // 設定一開始context 預設值
 const defaultValue = {
-  allikesData: null,  // 所有Ubikes站點資料
+  allikesData: [],  // 所有Ubikes站點資料
   userFavoriteStops: null, // 使用者最愛的站點資料
 }
 const BikesContext = createContext(defaultValue)
@@ -17,10 +17,10 @@ function BikesDataProvider(props) {
 
   return (
     <BikesContext.Provider value={{
-     allBikesData: allBikesData,
-     setAllBikesData: setAllBikesData,
-     userFavoriteStops: userFavoriteStops,
-     setUserFavoriteStops: setUserFavoriteStops,    
+     allBikesData,
+     setAllBikesData,
+     userFavoriteStops,
+     setUserFavoriteStops,    
     }}>
       {children}
     </BikesContext.Provider>

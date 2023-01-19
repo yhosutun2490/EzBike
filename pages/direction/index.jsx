@@ -39,25 +39,15 @@ function filterStopsInCircle(bikeStopsData, depGps, destGps) {
 }
 
 function DirectionPage(props) {
-  const bikeStopsData = useContext(BikesContext); // 所有Ubike站點資料
-  // GPS資料
-  const userGPS = useContext(GeoLocationContext).userGPS;
-  const departureGPS = useContext(GeoLocationContext).departureGPS;
-  const destinationGPS = useContext(GeoLocationContext).destinationGPS;
-  // GPS set Function
-  const setUserGPS = useContext(GeoLocationContext).setUserGPS;
-  const setDepartureGPS = useContext(GeoLocationContext).setDepartureGPS;
-  const setDestinationGPS = useContext(GeoLocationContext).setDestinationGPS;
+  const { allBikesData, setAllBikesData } = useContext(BikesContext);
+  const { departureGPS, destinationGPS, setDepartureGPS, setDestinationGPS } =
+    useContext(GeoLocationContext);
 
   const [directions, setDirections] = useState(null); //導航方向
   const [travelMethod, setTravelMethod] = useState(null);
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
 
-  const setBikeStops = bikeStopsData.setAllBikesData; // 所有單車站站點資訊(context 管理)
-  const bikeStops = bikeStopsData.allBikesData
-    ? bikeStopsData.allBikesData
-    : props.allBikesData; //第一次是client端是空資料，用server SSG props
   // 先用javascript CSR載地圖
   const { isLoaded } = useLoadScript({
     // Enter your own Google Maps API key
@@ -109,23 +99,28 @@ function DirectionPage(props) {
   let inCircleStops = [];
   if (directions) {
     inCircleStops = filterStopsInCircle(
-      bikeStops,
+      allBikesData,
       departureGPS,
       destinationGPS
     );
   }
 
-  // 每分鐘重新更新站點資訊
+  // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
   useEffect(() => {
-    const timer = setInterval(async () => {
-      const allBikesData = await ubikeApi();
-      setBikeStops(allBikesData);
+    async function fetchUbikeData() {
+      const bikeStopsData = await ubikeApi();
+      setAllBikesData(bikeStopsData);
+    }
+    fetchUbikeData();
+    // 60秒後更新資料
+    const timer = setInterval(() => {
+      fetchUbikeData();
     }, 60000);
 
     return () => {
       clearInterval(timer);
     };
-  }, [setBikeStops]);
+  }, [setAllBikesData]);
 
   return (
     <>
@@ -183,14 +178,14 @@ function DirectionPage(props) {
 }
 
 // server SSG fetch data
-export async function getStaticProps() {
-  let allBikesData = await ubikeApi();
-  return {
-    props: {
-      allBikesData: allBikesData,
-    },
-    revalidate: 60,
-  };
-}
+// export async function getStaticProps() {
+//   let allBikesData = await ubikeApi();
+//   return {
+//     props: {
+//       allBikesData: allBikesData,
+//     },
+//     revalidate: 60,
+//   };
+// }
 
 export default DirectionPage;

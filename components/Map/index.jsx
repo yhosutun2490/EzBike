@@ -64,7 +64,8 @@ function Map(props) {
       )}
       <MarkerClusterer>
         {(clusterer) =>
-          bikesData.map((item) => (
+          bikesData &&
+          bikesData?.map((item) => (
             <Marker
               key={item.sno}
               position={{ lat: item.lat, lng: item.lng }}
