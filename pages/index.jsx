@@ -18,8 +18,12 @@ export default function Home(props) {
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false); // 最愛站點清單
-  const { userFavoriteStops, allBikesData, setAllBikesData } =
-    useContext(BikesContext); //使用者最愛站點資料
+  const {
+    setUserFavoriteStops,
+    userFavoriteStops,
+    allBikesData,
+    setAllBikesData,
+  } = useContext(BikesContext); //使用者最愛站點資料
 
   // 先用javascript CSR載地圖
   const { isLoaded } = useLoadScript({
@@ -45,6 +49,12 @@ export default function Home(props) {
       clearInterval(timer);
     };
   }, [setAllBikesData]);
+
+  // localStorage更新上次使用者最愛站點id清料
+  useEffect(() => {
+    const favoriteStopsId = JSON.parse(localStorage.getItem("favoriteStopsId"));
+    setUserFavoriteStops(favoriteStopsId);
+  }, [setUserFavoriteStops]);
 
   // 將最愛站點的id比對所有站點資料
   const transArray = Object.values(allBikesData); //物件轉陣列
