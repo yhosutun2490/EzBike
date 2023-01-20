@@ -27,6 +27,7 @@ function AddFavoriteBtn(props) {
   function handleAddFavorite(e) {
     const stopId = e.target.dataset.id; //單車站id號碼
     newFavoriteIdAarr.push(stopId);
+    localStorage.setItem("favoriteStopsId", JSON.stringify(newFavoriteIdAarr));
     setFavoriteStop(newFavoriteIdAarr);
     alert("已加入最愛");
   }
@@ -34,6 +35,7 @@ function AddFavoriteBtn(props) {
   function handleDeleteFavorite(e) {
     const stopId = e.target.dataset.id; //單車站id號碼
     const resultArr = newFavoriteIdAarr.filter((id) => id !== stopId);
+    localStorage.setItem("favoriteStopsId", JSON.stringify(resultArr));
     setFavoriteStop(resultArr);
     alert("已取消最愛");
   }

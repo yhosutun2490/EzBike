@@ -8,7 +8,6 @@ async function ubikeApi () {
     .catch(function (err) {
       console.log(err);
     });
-    // 公共api有時會載到2022舊資料，再重新fetch
   return allBikesData
 }
 

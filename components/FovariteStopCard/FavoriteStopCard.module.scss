@@ -57,7 +57,11 @@
   margin-left: 5px;
 }
 .add_fovorite_btn {
-  margin-left: 5%;
+  margin: 0 2%;
+  min-width: 100px;
+}
+.add_navigation_btn{
+  min-width: 100px;
 }
 .alert_msg{
   color: rgb(224, 88, 88);
