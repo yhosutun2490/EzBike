@@ -53,11 +53,14 @@ export default function Home(props) {
   // localStorage更新上次使用者最愛站點id清料
   useEffect(() => {
     const favoriteStopsId = JSON.parse(localStorage.getItem("favoriteStopsId"));
-    setUserFavoriteStops(favoriteStopsId);
+    // 如果取到的不是null (使用者有最愛站點紀錄)
+    if (favoriteStopsId) {
+      setUserFavoriteStops(favoriteStopsId);
+    }
   }, [setUserFavoriteStops]);
 
-  // 將最愛站點的id比對所有站點資料
   const transArray = Object.values(allBikesData); //物件轉陣列
+  // 將最愛站點的id比對所有站點資料
   let filterStops = transArray.filter((stop) =>
     userFavoriteStops.includes(stop.sno)
   );
