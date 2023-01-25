@@ -18,6 +18,7 @@ export default function Home(props) {
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false); // 最愛站點清單
+  const [hoverFavoriteStop, setHoverFavoriteStop] = useState(""); //使用者摸到的最愛站點位置
   const {
     setUserFavoriteStops,
     userFavoriteStops,
@@ -32,6 +33,16 @@ export default function Home(props) {
     // use Places library
     libraries,
   });
+
+  // hover到最愛站點聚焦功能，將摸到的最愛站點gps以setSelected更新
+  function onMouseEnter(e) {
+    e.stopPropagation();
+    const stopLat = Number(e.target.dataset.lat);
+    const stopLng = Number(e.target.dataset.lng);
+    console.log("摸到中");
+    console.log(stopLat, stopLng);
+    setSelected({ lat: stopLat, lng: stopLng });
+  }
 
   // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
   useEffect(() => {
@@ -106,6 +117,7 @@ export default function Home(props) {
                 stopId={item.sno}
                 lat={item.lat}
                 lng={item.lng}
+                onMouseEnter={onMouseEnter}
               />
             ))}
           </div>
@@ -115,7 +127,7 @@ export default function Home(props) {
             ) : (
               <Map
                 bikesData={allBikesData}
-                position={selected}
+                centerPosition={selected}
                 setSelected={setSelected}
                 activeMarker={activeMarker}
                 setActiveMarker={setActiveMarker}
@@ -123,7 +135,7 @@ export default function Home(props) {
               />
             )}
             <div className={styles.geolocation_btn_wrap}>
-              <UserGeoLocationBtn />
+              <UserGeoLocationBtn setSelected={setSelected} />
             </div>
           </div>
         </main>

@@ -5,9 +5,15 @@ import AddFavoriteBtn from "../Map/AddFavoriteBtn";
 import AddNavigationBtn from "../Map/AddNavigationBtn";
 
 function FavoriteStopCard(props) {
-  const { stopId, stopName, rentCount, parkCount, lat, lng } = props;
+  const { stopId, stopName, rentCount, parkCount, lat, lng, onMouseEnter } =
+    props;
   return (
-    <div className={styles.stop_card}>
+    <div
+      className={styles.stop_card}
+      data-lat={lat}
+      data-lng={lng}
+      onMouseEnter={(e) => onMouseEnter(e)}
+    >
       <div className={styles.stop_name}>
         <p className={styles.stop_title}>站點名稱</p>
         <div className={styles.stop_name_detail}>{stopName}</div>

@@ -19,11 +19,18 @@ const defaultCircleOption = {
   fillOpacity: 0.2,
   fillColor: "grey",
 };
+const userSelfCircleOption = {
+  strokeColor: "blue",
+  strokeWeight: 1,
+  zIndex: -1,
+  fillOpacity: 0.2,
+  fillColor: "grey",
+};
 
 function Map(props) {
   const {
     bikesData,
-    position,
+    centerPosition,
     activeMarker,
     setActiveMarker,
     isModalOpen,
@@ -46,7 +53,7 @@ function Map(props) {
   return (
     <GoogleMap
       zoom={17}
-      center={position ? position : center}
+      center={centerPosition ? centerPosition : center}
       mapContainerClassName={styles["map-container"]}
       onClick={() => setActiveMarker(false)}
     >
@@ -127,7 +134,7 @@ function Map(props) {
         }
       </MarkerClusterer>
       <Marker
-        position={position ? position : center}
+        position={centerPosition ? centerPosition : center}
         icon={{
           // path: google.maps.SymbolPath.CIRCLE,
           url: "https://cdn-icons-png.flaticon.com/512/8340/8340715.png",
@@ -149,7 +156,7 @@ function Map(props) {
         />
       )}
       {userGPS && (
-        <Circle center={userGPS} radius={700} options={defaultCircleOption} />
+        <Circle center={userGPS} radius={300} options={defaultCircleOption} />
       )}
     </GoogleMap>
   );
