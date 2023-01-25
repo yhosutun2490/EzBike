@@ -39,8 +39,6 @@ export default function Home(props) {
     e.stopPropagation();
     const stopLat = Number(e.target.dataset.lat);
     const stopLng = Number(e.target.dataset.lng);
-    console.log("摸到中");
-    console.log(stopLat, stopLng);
     setSelected({ lat: stopLat, lng: stopLng });
   }
 
@@ -99,6 +97,7 @@ export default function Home(props) {
               setIsFavoriteOpen={setIsFavoriteOpen}
               isFavoriteOpen={isFavoriteOpen}
               bikeStops={allBikesData}
+              onMouseEnter={onMouseEnter}
             />
           )}
         </div>

@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { BikesContext } from "../../context/BikesContext";
 import FavoriteStopCard from "../FovariteStopCard";
 function FavoriteStopsModal(props) {
-  const { setIsFavoriteOpen, bikeStops } = props;
+  const { setIsFavoriteOpen, bikeStops, onMouseEnter } = props;
   const favoriteStops = useContext(BikesContext).userFavoriteStops;
   const transArray = Object.values(bikeStops); //物件轉陣列
 
@@ -34,6 +34,7 @@ function FavoriteStopsModal(props) {
               stopId={item.sno}
               lat={item.lat}
               lng={item.lng}
+              onMouseEnter={onMouseEnter}
             />
           ))}
         </div>

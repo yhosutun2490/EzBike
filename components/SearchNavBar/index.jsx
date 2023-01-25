@@ -16,6 +16,7 @@ function SearchNavBar(props) {
     isFavoriteOpen,
     setIsFavoriteOpen,
     bikeStops,
+    onMouseEnter,
   } = props;
 
   return (
@@ -68,6 +69,7 @@ function SearchNavBar(props) {
             <FavoriteStopsModal
               setIsFavoriteOpen={setIsFavoriteOpen}
               bikeStops={bikeStops}
+              onMouseEnter={onMouseEnter}
             />
           )}
         </div>
