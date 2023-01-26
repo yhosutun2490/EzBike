@@ -10,6 +10,8 @@ import { useState, useEffect, useContext } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../context/BikesContext";
 import FavoriteStopCard from "../components/FovariteStopCard";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const libraries = ["places"];
 
@@ -18,7 +20,6 @@ export default function Home(props) {
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false); // 最愛站點清單
-  const [hoverFavoriteStop, setHoverFavoriteStop] = useState(""); //使用者摸到的最愛站點位置
   const {
     setUserFavoriteStops,
     userFavoriteStops,
@@ -103,6 +104,19 @@ export default function Home(props) {
         </div>
         <StopStatusRow />
         <main className={styles.main}>
+          <ToastContainer
+            className={styles.toast_container}
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
           <div className={styles.favorite_stops_list}>
             {filterStops.length > 0 && (
               <div className={styles.favorite_title}>最愛站點清單</div>

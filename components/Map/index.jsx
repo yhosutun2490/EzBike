@@ -61,6 +61,7 @@ function Map(props) {
       }
     }
   }
+
   return (
     <GoogleMap
       zoom={17}

@@ -1,6 +1,7 @@
 import styles from "./AddFavoriteBtn.module.scss";
 import { useContext } from "react";
 import { BikesContext } from "../../../context/BikesContext";
+import { toast } from "react-toastify";
 
 function AddFavoriteBtn(props) {
   const { stopsId } = props;
@@ -29,7 +30,7 @@ function AddFavoriteBtn(props) {
     newFavoriteIdAarr.push(stopId);
     localStorage.setItem("favoriteStopsId", JSON.stringify(newFavoriteIdAarr));
     setFavoriteStop(newFavoriteIdAarr);
-    alert("已加入最愛");
+    toast("已加入最愛!");
   }
 
   function handleDeleteFavorite(e) {
@@ -37,7 +38,7 @@ function AddFavoriteBtn(props) {
     const resultArr = newFavoriteIdAarr.filter((id) => id !== stopId);
     localStorage.setItem("favoriteStopsId", JSON.stringify(resultArr));
     setFavoriteStop(resultArr);
-    alert("已取消最愛");
+    toast("已取消最愛!");
   }
   return (
     <>

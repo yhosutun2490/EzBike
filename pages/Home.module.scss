@@ -1,11 +1,12 @@
-
 .body_container {
- background-color: #FAFBFC;
+  background-color: #FAFBFC;
+
   @media screen and (min-width:1000px) {
-      padding: 0 2%;
-    }
+    padding: 0 2%;
+  }
 
 }
+
 .nav-bar {
   padding: 0 2%;
   display: flex;
@@ -13,6 +14,7 @@
   text-align: center;
   padding-top: 15px;
 }
+
 .main {
   display: flex;
   justify-content: space-between;
@@ -20,10 +22,12 @@
   border-radius: 8px;
   align-items: center;
   min-height: 75vh;
-    @media screen and (min-width:1000px) {
-       margin: 1% 0;
-      }
-} 
+
+  @media screen and (min-width:1000px) {
+    margin: 1% 0;
+  }
+}
+
 .favorite_stops_list {
   display: none;
   max-width: 35%;
@@ -32,33 +36,36 @@
   animation: list-move-in 1s 1 ease-out 0s forwards;
   // 最愛站點超過視窗大小
   overflow-y: auto;
+
   .favorite_title {
     text-align: center;
     font-size: 1.5rem;
     font-weight: 500;
     color: blueviolet;
   }
+
   @media screen and (min-width:1000px) {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      height: 85vh;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 85vh;
+  }
 }
+
 @keyframes list-move-in {
-    0% {
-        transform: scaleX(0);
-        opacity: 0;
-      }
-    
-      70% {
-        opacity: 0;
-      }
-    
-      100% {
-        transform: scaleX(1);
-        opacity: 1;
-      }
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 .map {
@@ -67,19 +74,27 @@
   flex-grow: 1;
   position: relative;
   margin: 0 auto;
+
   @media screen and (min-width:1000px) {
-      width: 80%;;
-    }
+    width: 80%;
+    ;
+  }
 }
+
 .geolocation_btn_wrap {
   position: absolute;
   top: 60%;
   right: 3%;
 }
+
 .footer {
   display: none;
-  @media screen and (min-width:1000px){ 
+
+  @media screen and (min-width:1000px) {
     display: flex;
     background-color: #E9EBED;
   }
+}
+.toast_container {
+  top: 8rem !important;
 }
