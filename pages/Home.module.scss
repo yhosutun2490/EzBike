@@ -26,10 +26,12 @@
 } 
 .favorite_stops_list {
   display: none;
-  max-width: 30%;
+  max-width: 35%;
   background-color: var(--primary-400);
   transform-origin: left;
   animation: list-move-in 1s 1 ease-out 0s forwards;
+  // 最愛站點超過視窗大小
+  overflow-y: auto;
   .favorite_title {
     text-align: center;
     font-size: 1.5rem;

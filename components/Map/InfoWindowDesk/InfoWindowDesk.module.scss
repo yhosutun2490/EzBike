@@ -1,18 +1,32 @@
 .info-window {
   min-width: 500px ;
   font-size: 1.2rem;
-  .stop-name,
-  .stop-detail,
-  .stop-address,
-  .updated-time {
+  .stop-name-group,
+  .stop-detail-group,
+  .stop-address-group,
+  .updated-time-group {
     display: flex;
     align-items: center;
+  }
+  .title {
+    font-weight: 700;
+    min-width: 50px;
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  .content {
+    font-weight: 400;
+    font-size: 1.1rem;
   }
 
   .rent-count,
   .park-count {
     display: flex;
     align-items: center;
+    margin-right: 10px;
+    & .content {
+      margin-left: 5px;
+    }
   }
 }
 .add-btn {

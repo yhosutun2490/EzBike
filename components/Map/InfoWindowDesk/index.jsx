@@ -8,27 +8,28 @@ function InfoWindowDesk(props) {
   const { id, ar, aren, sbi, bemp, updateTime, lat, lng } = props;
   return (
     <div className={styles["info-window"]}>
-      <div className={styles["stop-name"]}>
-        <p>站點名</p>
-        <p>{ar}</p>
+      <div className={styles["stop-name-group"]}>
+        <p className={styles["title"]}>站點名:</p>
+        <p className={styles["content"]}>{ar}</p>
       </div>
-      <div className={styles["stop-address"]}>
-        <p>地址</p>
-        <p>{aren}</p>
+      <div className={styles["stop-address-group"]}>
+        <p className={styles["title"]}>地址:</p>
+        <p className={styles["content"]}>{aren}</p>
       </div>
-      <div className={styles["stop-detail"]}>
+      <div className={styles["stop-detail-group"]}>
         <div className={styles["rent-count"]}>
-          <GiDutchBike size={24} />
-          {sbi}
+          <GiDutchBike size={28} />
+          <p className={styles["content"]}>{sbi}</p>
         </div>
         <div className={styles["park-count"]}>
-          <FaParking size={24} />
-          {bemp}
+          <FaParking size={28} />
+          <p className={styles["content"]}>{bemp}</p>
         </div>
       </div>
-      <div className={styles["updated-time"]}>
-        <p>更新時間</p>
-        {updateTime}
+      <div className={styles["updated-time-group"]}>
+        <p className={styles["title"]}>更新時間:</p>
+        <p className={styles["content"]}>{updateTime}</p>
+
         <div className={styles["add-btn"]}>
           <AddFavoriteBtn stopsId={id} />
         </div>
