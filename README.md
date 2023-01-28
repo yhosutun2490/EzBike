@@ -32,7 +32,7 @@
 2. 在終端機輸入以下指令，將本專案 clone 到本機電腦
 
 ```
-git clone https://github.com/yhosutun2490/Simple-Twitter-Natsu.git
+git clone https://github.com/yhosutun2490/EzBike.git
 ```
 
 3. 透過終端機進入存放此專案的資料夾後，輸入以下指令安裝 npm 套件
@@ -50,7 +50,7 @@ npm start
 6. 打開瀏覽器輸入以下網址即可開始使用本專案
 
 ```
-http://localhost:3000/Simple-Twitter-Natsu/
+http://localhost:3000/
 ```
 
 7. 如欲退出專案可使用以下快捷鍵
