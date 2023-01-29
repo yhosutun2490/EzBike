@@ -105,6 +105,9 @@ function DirectionPage(props) {
     );
   }
 
+  // directions導航結果
+  console.log(directions);
+
   // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
   useEffect(() => {
     async function fetchUbikeData() {

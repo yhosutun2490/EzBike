@@ -1,6 +1,7 @@
 import styles from "./Map.module.scss";
 import InfoMarker from "./InfoMarker"; // 手機版站點資訊使用
 import InfoWindowDesk from "./InfoWindowDesk"; // 桌機版站點資訊使用
+import React from "react";
 import {
   GoogleMap,
   Marker,
@@ -33,7 +34,6 @@ function Map(props) {
     centerPosition,
     activeMarker,
     setActiveMarker,
-    isModalOpen,
     directions,
   } = props;
   const { userGPS, departureGPS, destinationGPS } =
@@ -61,6 +61,7 @@ function Map(props) {
       }
     }
   }
+  console.log("地圖被渲染了");
 
   return (
     <GoogleMap
@@ -117,7 +118,7 @@ function Map(props) {
                   handleActiveMarker(item.sno);
                 }}
               >
-                {activeMarker === item.sno && !isModalOpen ? (
+                {activeMarker === item.sno  ? (
                   <div className={styles["info-window-mobile"]}>
                     <InfoMarker
                       id={item.sno}
@@ -131,7 +132,7 @@ function Map(props) {
                     />
                   </div>
                 ) : null}
-                {activeMarker === item.sno && !isModalOpen ? (
+                {activeMarker === item.sno ? (
                   <InfoWindow
                     onCloseClick={() => setActiveMarker(null)}
                     className={styles["info-window-desk"]}
@@ -199,5 +200,5 @@ function Map(props) {
     </GoogleMap>
   );
 }
-
-export default Map;
+const MemoMap = React.memo(Map);
+export default MemoMap;

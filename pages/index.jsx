@@ -1,12 +1,12 @@
 import Head from "next/head";
 import styles from "./Home.module.scss";
 import ubikeApi from "./api/ubikeApi";
-import Map from "../components/Map";
+import MemoMap from "../components/Map";
 import SearchNavBar from "../components/SearchNavBar";
 import StopStatusRow from "../components/StopStatusRow";
 import UserGeoLocationBtn from "../components/UserGeoLocationBtn";
 import Footer from "../components/Footer";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import { BikesContext } from "../context/BikesContext";
 import FavoriteStopCard from "../components/FovariteStopCard";
@@ -138,13 +138,12 @@ export default function Home(props) {
             {!isLoaded ? (
               <p>Loading....</p>
             ) : (
-              <Map
+              <MemoMap
                 bikesData={allBikesData}
                 centerPosition={selected}
                 setSelected={setSelected}
                 activeMarker={activeMarker}
                 setActiveMarker={setActiveMarker}
-                isModalOpen={isModalOpen}
               />
             )}
             <div className={styles.geolocation_btn_wrap}>
