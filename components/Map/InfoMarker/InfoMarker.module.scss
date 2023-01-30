@@ -22,8 +22,7 @@
     } 
 }
 .bike-main-info, .bike-sub-info {
- width: 85%;
- margin: 0 auto;
+ padding: 10px 5px;
  display: flex;
 }
 .bike-sub-info {
@@ -42,12 +41,15 @@
 .rent-count,.park-count {
   display: flex;
   align-items: center;
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.3rem;
+  font-weight: 700;
   color: rgb(72, 71, 71);
   &:first-child {
     margin-right: 2%;
   }
+}
+.info-title {
+  font-weight: 700;
 }
 .add-btn {
   margin-left: 2%;

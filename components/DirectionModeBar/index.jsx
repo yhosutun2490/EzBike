@@ -1,4 +1,5 @@
 import styles from "./DirectionModeBar.module.scss";
+import { toast } from "react-toastify";
 
 // React Icon
 import { FaSubway } from "react-icons/fa";
@@ -14,7 +15,7 @@ function DirectionModeBar(props) {
   //切換交通模式時要清掉舊的指引路線
   async function handleOnTravelBus() {
     if (departureGPS === null || destinationGPS === null) {
-      alert("請輸入完整起始點和目的地");
+      toast("請輸入完整起始點和目的地");
       return;
     }
     setTravelMethod("bus");
@@ -22,7 +23,7 @@ function DirectionModeBar(props) {
   }
   async function handleOnTravelMetro() {
     if (departureGPS === null || destinationGPS === null) {
-      alert("請輸入完整起始點和目的地");
+      toast("請輸入完整起始點和目的地");
       return;
     }
     setTravelMethod("metro");
@@ -30,7 +31,7 @@ function DirectionModeBar(props) {
   }
   async function handleOnTravelBike() {
     if (departureGPS === null || destinationGPS === null) {
-      alert("請輸入完整起始點和目的地");
+      toast("請輸入完整起始點和目的地");
       return;
     }
     setTravelMethod("bike");

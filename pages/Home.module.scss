@@ -12,7 +12,7 @@
   display: flex;
   align-items: center;
   text-align: center;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 .main {
@@ -74,6 +74,7 @@
   flex-grow: 1;
   position: relative;
   margin: 0 auto;
+ 
 
   @media screen and (min-width:1000px) {
     width: 80%;

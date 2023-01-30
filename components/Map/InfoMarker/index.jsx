@@ -14,11 +14,11 @@ function InfoMarker(props) {
       <div className={styles["bike-main-info"]}>
         <span className={styles["rent-count"]}>
           <GiDutchBike size={28} />
-          <div className={styles[`${rentCountStyle}`]}>可借: {sbi}</div>
+          <div className={styles[`${rentCountStyle}`]}>{sbi}</div>
         </span>
         <span className={styles["park-count"]}>
           <FaParking size={28} />
-          <div className={styles[`${parkCountStyle}`]}>可停: {bemp}</div>
+          <div className={styles[`${parkCountStyle}`]}>{bemp}</div>
         </span>
         <div className={styles["add-btn"]}>
           <AddFavoriteBtn stopsId={id} />

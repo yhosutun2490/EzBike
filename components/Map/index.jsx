@@ -61,7 +61,6 @@ function Map(props) {
       }
     }
   }
-  console.log("地圖被渲染了");
 
   return (
     <GoogleMap
@@ -118,7 +117,7 @@ function Map(props) {
                   handleActiveMarker(item.sno);
                 }}
               >
-                {activeMarker === item.sno  ? (
+                {activeMarker === item.sno ? (
                   <div className={styles["info-window-mobile"]}>
                     <InfoMarker
                       id={item.sno}

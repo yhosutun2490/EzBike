@@ -10,6 +10,7 @@ import { GeoLocationContext } from "../../context/GeoLocationContext";
 import DirectionSearchNavBar from "../../components/DirectionSearchNavBar";
 import DirectionDetailRow from "../../components/DirectionDetailRow";
 import distanceCaculator from "../../utils/distanceCaulator"; // 測量兩點直線距離
+import { ToastContainer } from "react-toastify";
 
 const libraries = ["places"];
 
@@ -158,6 +159,19 @@ function DirectionPage(props) {
           )}
         </div>
         <div className={styles.map_container}>
+          <ToastContainer
+            className={styles.toast_container}
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
           <div className={styles.map}>
             {!isLoaded ? (
               <p>Loading....</p>
