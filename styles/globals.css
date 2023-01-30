@@ -104,7 +104,10 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
-    background-color: white;}
+    background-color: white;
+    min-width: 320px;
+  }
+   
 
 a {
   color: inherit;

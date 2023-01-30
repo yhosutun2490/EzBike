@@ -9,8 +9,10 @@
   display: flex;
   justify-content: space-between;
   position: relative; // 最愛站點視窗定位用
-  margin-top: 20px;
-
+  margin-top: 10px;
+  @media screen and (min-width:720px) {
+    margin-top: 20px; 
+  }
   }
 }
 .input {
