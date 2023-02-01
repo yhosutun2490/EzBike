@@ -1,18 +1,20 @@
 import styles from "./UserGeoLocationBtn.module.scss";
 import { FaLocationArrow } from "react-icons/fa";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
-import userGeolocation from "../../utils/userGeolocation";
+import userGeolocationApi from "../../pages/api/userGeolocationApi";
 import reverseGPSApi from "../../pages/api/reverseGPSApi";
 import { useContext } from "react";
 import { toast } from "react-toastify";
+
 function UserGeoLocationBtn(props) {
   const { setSelected } = props; // 首頁地圖按到自己GPS定位
   const { userGPS, setUserGPS, setUserAddress, setDepartureGPS } =
     useContext(GeoLocationContext);
+
   async function getUserGeoLocation() {
     // 如果使用者第一次同意追蹤自己的定位
     if (!userGPS) {
-      const userGeoLocationResult = await userGeolocation(); // 自己的GPS資料
+      const userGeoLocationResult = await userGeolocationApi; // 自己的GPS資料
       const result = await reverseGPSApi(userGeoLocationResult); // 轉成自己的地址
       toast("紀錄您的定位成功!");
       const address = result.results[0].formatted_address;

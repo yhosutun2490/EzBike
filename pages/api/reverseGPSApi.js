@@ -1,10 +1,12 @@
-async function covertGPSApi (gpsLatLng) {
-const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${gpsLatLng.lat},${gpsLatLng.lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`).then(function (response) {
-      return response.json()
+import axios from "axios";
+
+async function covertGPSApi (userGPS) {
+let response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${userGPS.lat},${userGPS.lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`).then(function (response) {
+      return response.data
       }).catch(function (err) {
-        console.log(err);
+        return err;
       }) 
- return response
+      return response
 }
 
 export default covertGPSApi

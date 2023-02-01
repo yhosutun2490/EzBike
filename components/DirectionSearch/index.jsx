@@ -1,7 +1,6 @@
 import styles from "./DirectionSearch.module.scss";
 import PlacesAutoComplete from "../PlacesAutoComplete";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
-import reverseGPSApi from "../../pages/api/reverseGPSApi";
 
 // React Icon
 import { BsCircle } from "react-icons/bs";

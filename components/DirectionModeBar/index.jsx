@@ -1,5 +1,4 @@
 import styles from "./DirectionModeBar.module.scss";
-import { toast } from "react-toastify";
 
 // React Icon
 import { FaSubway } from "react-icons/fa";
