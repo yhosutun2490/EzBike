@@ -3,9 +3,9 @@ import styles from "./DirectionPage.module.scss";
 import "default-passive-events"; //瀏覽器套件
 import ubikeApi from "../api/ubikeApi";
 import Map from "../../components/Map";
-import { useState, useEffect, useContext, useMemo } from "react";
+import { useState, useContext } from "react";
+import { useQuery } from "react-query";
 import { useLoadScript } from "@react-google-maps/api";
-import { BikesContext } from "../../context/BikesContext";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
 import DirectionSearchNavBar from "../../components/DirectionSearchNavBar";
 import DirectionDetailRow from "../../components/DirectionDetailRow";
@@ -39,7 +39,6 @@ function filterStopsInCircle(bikeStopsData, depGps, destGps) {
 }
 
 function DirectionPage(props) {
-  const { allBikesData, setAllBikesData } = useContext(BikesContext);
   const { departureGPS, destinationGPS, setDepartureGPS, setDestinationGPS } =
     useContext(GeoLocationContext);
 
@@ -54,6 +53,11 @@ function DirectionPage(props) {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     // use Places library
     libraries,
+  });
+  // useQuery重構
+  const { data } = useQuery("ubikeAPI", ubikeApi, {
+    refetchOnWindowFocus: false,
+    refetchInterval: 60000, // 每分鐘fetch資料更新一次
   });
 
   // Google Direction函式
@@ -98,32 +102,8 @@ function DirectionPage(props) {
   // 按下導航時篩選範圍內站點
   let inCircleStops = [];
   if (directions) {
-    inCircleStops = filterStopsInCircle(
-      allBikesData,
-      departureGPS,
-      destinationGPS
-    );
+    inCircleStops = filterStopsInCircle(data, departureGPS, destinationGPS);
   }
-
-  // directions導航結果
-  console.log(directions);
-
-  // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
-  // useEffect(() => {
-  //   async function fetchUbikeData() {
-  //     const bikeStopsData = await ubikeApi();
-  //     setAllBikesData(bikeStopsData);
-  //   }
-  //   fetchUbikeData();
-  //   // 60秒後更新資料
-  //   const timer = setInterval(() => {
-  //     fetchUbikeData();
-  //   }, 60000);
-
-  //   return () => {
-  //     clearInterval(timer);
-  //   };
-  // }, [setAllBikesData]);
 
   return (
     <>
