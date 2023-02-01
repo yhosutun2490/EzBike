@@ -1,16 +1,12 @@
 .travel_mode {
   width: calc(100% - 20px);
   height: 100%;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .travel_icon {
   cursor: pointer;
-  &:hover {
-    background-color: rgb(182, 205, 226);
-  }
 }
 
 .previous {

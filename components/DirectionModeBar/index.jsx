@@ -4,6 +4,8 @@ import styles from "./DirectionModeBar.module.scss";
 import { FaSubway } from "react-icons/fa";
 import { MdDirectionsBike } from "react-icons/md";
 import { FaBusAlt } from "react-icons/fa";
+// material UI
+import { Button, Tooltip } from "@mui/material";
 // 引入起始點和目的地context
 import { GeoLocationContext } from "../../context/GeoLocationContext";
 import { useContext } from "react";
@@ -38,24 +40,33 @@ function DirectionModeBar(props) {
   }
   return (
     <div className={styles.travel_mode}>
-      <FaBusAlt
-        size={32}
-        onClick={handleOnTravelBus}
-        className={styles.travel_icon}
-        color={travelMethod === "bus" ? "blue" : ""}
-      />
-      <FaSubway
-        size={32}
-        onClick={handleOnTravelMetro}
-        className={styles.travel_icon}
-        color={travelMethod === "metro" ? "blue" : ""}
-      />
-      <MdDirectionsBike
-        size={32}
-        onClick={handleOnTravelBike}
-        className={styles.travel_icon}
-        color={travelMethod === "bike" ? "blue" : ""}
-      />
+      <Tooltip title="公車" placement="left-start">
+        <Button variant="contained" onClick={handleOnTravelBus}>
+          <FaBusAlt
+            size={32}
+            className={styles.travel_icon}
+            color={travelMethod === "bus" ? "blue" : ""}
+          />
+        </Button>
+      </Tooltip>
+      <Tooltip title="捷運" placement="left-start">
+        <Button variant="contained" onClick={handleOnTravelMetro}>
+          <FaSubway
+            size={32}
+            className={styles.travel_icon}
+            color={travelMethod === "metro" ? "blue" : ""}
+          />
+        </Button>
+      </Tooltip>
+      <Tooltip title="單車" placement="left-start">
+        <Button variant="contained" onClick={handleOnTravelBike}>
+          <MdDirectionsBike
+            size={32}
+            className={styles.travel_icon}
+            color={travelMethod === "bike" ? "blue" : ""}
+          />
+        </Button>
+      </Tooltip>
     </div>
   );
 }
