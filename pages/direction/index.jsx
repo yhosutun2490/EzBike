@@ -109,21 +109,21 @@ function DirectionPage(props) {
   console.log(directions);
 
   // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
-  useEffect(() => {
-    async function fetchUbikeData() {
-      const bikeStopsData = await ubikeApi();
-      setAllBikesData(bikeStopsData);
-    }
-    fetchUbikeData();
-    // 60秒後更新資料
-    const timer = setInterval(() => {
-      fetchUbikeData();
-    }, 60000);
+  // useEffect(() => {
+  //   async function fetchUbikeData() {
+  //     const bikeStopsData = await ubikeApi();
+  //     setAllBikesData(bikeStopsData);
+  //   }
+  //   fetchUbikeData();
+  //   // 60秒後更新資料
+  //   const timer = setInterval(() => {
+  //     fetchUbikeData();
+  //   }, 60000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [setAllBikesData]);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, [setAllBikesData]);
 
   return (
     <>

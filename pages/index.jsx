@@ -12,6 +12,7 @@ import { BikesContext } from "../context/BikesContext";
 import FavoriteStopCard from "../components/FovariteStopCard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useQuery } from "react-query";
 
 const libraries = ["places"];
 
@@ -34,6 +35,23 @@ export default function Home(props) {
     // use Places library
     libraries,
   });
+  // useQuery重構
+  const { data } = useQuery("ubikeAPI", ubikeApi, {
+    refetchOnWindowFocus: false,
+    refetchInterval: 60000, // 每分鐘fetch資料更新一次
+  });
+  // 過濾最愛站點
+  const filterStops = useMemo(() => {
+    return data?.filter((stop) => userFavoriteStops.includes(stop.sno));
+  }, [data, userFavoriteStops]);
+
+  useEffect(() => {
+    const favoriteStopsId = JSON.parse(localStorage.getItem("favoriteStopsId"));
+    // 如果取到的不是null (使用者有最愛站點紀錄)
+    if (favoriteStopsId) {
+      setUserFavoriteStops(favoriteStopsId);
+    }
+  }, [setUserFavoriteStops]);
 
   // hover到最愛站點聚焦功能，將摸到的最愛站點gps以setSelected更新
   function onMouseEnter(e) {
@@ -44,36 +62,21 @@ export default function Home(props) {
   }
 
   // 每分鐘重新更新站點資訊，第一次渲染也由CSR去fetch資料
-  useEffect(() => {
-    async function fetchUbikeData() {
-      const bikeStopsData = await ubikeApi();
-      setAllBikesData(bikeStopsData);
-    }
-    fetchUbikeData();
-    // 60秒後更新資料
-    const timer = setInterval(() => {
-      fetchUbikeData();
-    }, 60000);
+  // useEffect(() => {
+  //   async function fetchUbikeData() {
+  //     const bikeStopsData = await ubikeApi();
+  //     setAllBikesData(bikeStopsData);
+  //   }
+  //   fetchUbikeData();
+  //   // 60秒後更新資料
+  //   const timer = setInterval(() => {
+  //     fetchUbikeData();
+  //   }, 60000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [setAllBikesData]);
-
-  // localStorage更新上次使用者最愛站點id清料
-  useEffect(() => {
-    const favoriteStopsId = JSON.parse(localStorage.getItem("favoriteStopsId"));
-    // 如果取到的不是null (使用者有最愛站點紀錄)
-    if (favoriteStopsId) {
-      setUserFavoriteStops(favoriteStopsId);
-    }
-  }, [setUserFavoriteStops]);
-
-  const transArray = Object.values(allBikesData); //物件轉陣列
-  // 將最愛站點的id比對所有站點資料
-  let filterStops = transArray.filter((stop) =>
-    userFavoriteStops.includes(stop.sno)
-  );
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, [setAllBikesData]);
 
   return (
     <>
@@ -118,7 +121,7 @@ export default function Home(props) {
             theme="dark"
           />
           <div className={styles.favorite_stops_list}>
-            {filterStops.length > 0 && (
+            {filterStops?.length > 0 && (
               <div className={styles.favorite_title}>最愛站點清單</div>
             )}
             {filterStops?.map((item) => (
@@ -139,7 +142,7 @@ export default function Home(props) {
               <p>Loading....</p>
             ) : (
               <MemoMap
-                bikesData={allBikesData}
+                bikesData={data}
                 centerPosition={selected}
                 setSelected={setSelected}
                 activeMarker={activeMarker}
@@ -158,14 +161,3 @@ export default function Home(props) {
     </>
   );
 }
-
-// server SSG fetch data
-// export async function getStaticProps() {
-//   const allBikesData = await ubikeApi();
-//   return {
-//     props: {
-//       allBikesData: allBikesData,
-//     },
-//     revalidate: 60,
-//   };
-// }
