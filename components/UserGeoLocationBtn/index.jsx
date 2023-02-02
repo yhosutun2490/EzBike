@@ -1,7 +1,7 @@
 import styles from "./UserGeoLocationBtn.module.scss";
 import { FaLocationArrow } from "react-icons/fa";
 import { GeoLocationContext } from "../../context/GeoLocationContext";
-import BroswerUserGeolocationApi from "../../pages/api/BroswerUserGeolocationApi";
+import broswerUserGeolocationApi from "../../pages/api/broswerUserGeolocationApi";
 import reverseGPSApi from "../../pages/api/reverseGPSApi";
 import { useContext } from "react";
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ function UserGeoLocationBtn(props) {
   async function getUserGeoLocation() {
     // 如果使用者第一次同意追蹤自己的定位
     if (!userGPS) {
-      const userGeoLocationResult = await BroswerUserGeolocationApi; // 自己的GPS資料
+      const userGeoLocationResult = await broswerUserGeolocationApi; // 自己的GPS資料
       const result = await reverseGPSApi(userGeoLocationResult); // 轉成自己的地址
       toast("紀錄您的定位成功!");
       const address = result.results[0].formatted_address;
