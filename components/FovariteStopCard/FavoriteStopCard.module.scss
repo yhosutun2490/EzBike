@@ -3,12 +3,15 @@
   flex-direction: column;
   align-content: space-between;
   border-bottom: 1px solid rgb(238, 232, 232);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 10px;
   padding-bottom: 15px;
   color: var(--primary-200);
   font-weight: 700;
-  min-width: 400px;
+  @media screen and (min-width: 700px) {
+    min-width: 350px;
+  }
+ 
 
   &:hover {
     background-color: var(--primary-500);
@@ -27,8 +30,9 @@
   & .stop_name_detail {
     width: 70%;
     color: black;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    word-wrap: break-word;
   }
 }
 
@@ -66,9 +70,9 @@
 .add_fovorite_btn {
   margin: 0 2%;
 }
-.add_navigation_btn{
+ 
 
-}
+
 .alert_msg{
   color: rgb(224, 88, 88);
   font-size: 1rem;

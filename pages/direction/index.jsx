@@ -130,12 +130,10 @@ function DirectionPage(props) {
               setDirections={setDirections}
             />
           )}
-          {directions && (
-            <DirectionDetailRow
-              directions={directions}
-              travelMethod={travelMethod}
-            />
-          )}
+          <DirectionDetailRow
+            directions={directions}
+            travelMethod={travelMethod}
+          />
         </div>
         <div className={styles.map_container}>
           <div className={styles.map}>
