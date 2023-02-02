@@ -160,15 +160,4 @@ function DirectionPage(props) {
   );
 }
 
-// server SSG fetch data
-// export async function getStaticProps() {
-//   let allBikesData = await ubikeApi();
-//   return {
-//     props: {
-//       allBikesData: allBikesData,
-//     },
-//     revalidate: 60,
-//   };
-// }
-
 export default DirectionPage;

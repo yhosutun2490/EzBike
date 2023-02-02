@@ -4,6 +4,19 @@ import { useContext } from "react";
 import { useRouter } from "next/router";
 import { GeoLocationContext } from "../../../context/GeoLocationContext";
 import reverseGPSApi from "../../../pages/api/reverseGPSApi";
+import { Button, createTheme, ThemeProvider } from "@mui/material";
+import { cyan } from "@mui/material/colors";
+const theme = createTheme({
+  palette: {
+    navigate: {
+      light: "#757ce8",
+      main: cyan[800],
+      dark: cyan[600],
+      contrastText: "fff",
+    },
+  },
+});
+
 function AddNavigationBtn(props) {
   const { setSearchStopAddress, setDestinationGPS } =
     useContext(GeoLocationContext);
@@ -20,9 +33,16 @@ function AddNavigationBtn(props) {
     route.push("direction");
   }
   return (
-    <button className={styles.direct_btn} onClick={handleAddSearchStop}>
-      <MdOutlineDirections size={16} /> 規劃路線
-    </button>
+    <ThemeProvider theme={theme}>
+      <Button
+        variant="contained"
+        onClick={handleAddSearchStop}
+        color="navigate"
+        style={{ borderRadius: 10, fontSize: 16 }}
+      >
+        <MdOutlineDirections size={16} /> 規劃路線
+      </Button>
+    </ThemeProvider>
   );
 }
 export default AddNavigationBtn;

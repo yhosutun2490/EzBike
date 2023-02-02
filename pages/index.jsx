@@ -21,12 +21,7 @@ export default function Home(props) {
   const [activeMarker, setActiveMarker] = useState(null); // activeMark 視窗狀態用
   const [isModalOpen, setIsModalOpen] = useState(false); // sidebar modal視窗用
   const [isFavoriteOpen, setIsFavoriteOpen] = useState(false); // 最愛站點清單
-  const {
-    setUserFavoriteStops,
-    userFavoriteStops,
-    allBikesData,
-    setAllBikesData,
-  } = useContext(BikesContext); //使用者最愛站點資料
+  const { setUserFavoriteStops, userFavoriteStops } = useContext(BikesContext); //使用者最愛站點資料
 
   // 先用javascript CSR載地圖
   const { isLoaded } = useLoadScript({
@@ -41,9 +36,9 @@ export default function Home(props) {
     refetchInterval: 60000, // 每分鐘fetch資料更新一次
   });
   // 過濾最愛站點
-  const filterStops = useMemo(() => {
-    return data?.filter((stop) => userFavoriteStops.includes(stop.sno));
-  }, [data, userFavoriteStops]);
+  const filterStops = data?.filter((stop) =>
+    userFavoriteStops.includes(stop.sno)
+  );
 
   useEffect(() => {
     const favoriteStopsId = JSON.parse(localStorage.getItem("favoriteStopsId"));
@@ -56,8 +51,10 @@ export default function Home(props) {
   // hover到最愛站點聚焦功能，將摸到的最愛站點gps以setSelected更新
   function onMouseEnter(e) {
     e.stopPropagation();
+    console.log(e);
     const stopLat = Number(e.target.dataset.lat);
     const stopLng = Number(e.target.dataset.lng);
+    console.log(stopLat, stopLng);
     setSelected({ lat: stopLat, lng: stopLng });
   }
 
@@ -83,7 +80,7 @@ export default function Home(props) {
               setIsModalOpen={setIsModalOpen}
               setIsFavoriteOpen={setIsFavoriteOpen}
               isFavoriteOpen={isFavoriteOpen}
-              bikeStops={allBikesData}
+              bikeStops={data}
               onMouseEnter={onMouseEnter}
             />
           )}

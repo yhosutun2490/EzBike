@@ -41,7 +41,11 @@ function DirectionModeBar(props) {
   return (
     <div className={styles.travel_mode}>
       <Tooltip title="公車" placement="left-start">
-        <Button variant="contained" onClick={handleOnTravelBus}>
+        <Button
+          variant="contained"
+          onClick={handleOnTravelBus}
+          style={{ borderRadius: 10 }}
+        >
           <FaBusAlt
             size={32}
             className={styles.travel_icon}
@@ -50,7 +54,11 @@ function DirectionModeBar(props) {
         </Button>
       </Tooltip>
       <Tooltip title="捷運" placement="left-start">
-        <Button variant="contained" onClick={handleOnTravelMetro}>
+        <Button
+          variant="contained"
+          onClick={handleOnTravelMetro}
+          style={{ borderRadius: 10 }}
+        >
           <FaSubway
             size={32}
             className={styles.travel_icon}
@@ -59,7 +67,11 @@ function DirectionModeBar(props) {
         </Button>
       </Tooltip>
       <Tooltip title="單車" placement="left-start">
-        <Button variant="contained" onClick={handleOnTravelBike}>
+        <Button
+          variant="contained"
+          onClick={handleOnTravelBike}
+          style={{ borderRadius: 10 }}
+        >
           <MdDirectionsBike
             size={32}
             className={styles.travel_icon}

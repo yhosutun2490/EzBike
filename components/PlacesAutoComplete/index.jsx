@@ -71,7 +71,7 @@ function PlacesAutoComplete(props) {
         onChange={(e) => {
           setValue(e.target.value);
         }}
-        disable={!ready}
+        disable={!ready ? "false" : "true"}
         placeholder="請輸入搜尋地址"
         className={styles["combobox-input"]}
       />
